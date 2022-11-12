@@ -1,0 +1,25 @@
+﻿@using Dekhlo.Web.Models;
+
+@{
+    PORTALEntitiy db = new PORTALEntitiy();
+    Random r = new Random();
+    List<Post> postsTemp = db.Posts.Include("PostImages").Where(m => m.StatusCondition.StatusName == StatusEnum.Published
+        && m.PostType == PostTypeEnum.Free).ToList();
+
+    List<Post> posts = postsTemp
+     .OrderBy(h => r.Next()).Take(50).ToList();
+}
+@if (posts != null && posts.Count > 0)
+{
+    <div class="rightAddListing">
+        <ul class="list-group carousel-Right-Listing">
+            @foreach (var item in posts)
+            {
+                <li class="list-group-item">
+                    <img src="@((item.PostImages != null && item.PostImages.Count > 0 && item.PostImages.FirstOrDefault() != null) ? item.PostImages.FirstOrDefault().ImageUrl : "")" class="img img-responsive" />
+                    <p><strong>@Html.ActionLink(item.PostTitle, "SinglePost", "Home", new { id=item.Id, title=item.PostTitle.ToSeoUrl() }, null)</strong></p>
+                </li>
+            }
+        </ul>
+    </div>
+}

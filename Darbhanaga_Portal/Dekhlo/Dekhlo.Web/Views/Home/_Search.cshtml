@@ -1,0 +1,37 @@
+﻿@using Dekhlo.Web.Models
+@{
+    PORTALEntitiy db = new PORTALEntitiy();
+    List<Cateogry> categories = db.Cateogries.Include("PostCateogryMappings").OrderBy(m => m.CateogryName).ToList();
+}
+
+@using (Html.BeginForm("SearchSuggestionResults", "Home", FormMethod.Post, new { }))
+{
+    @Html.AntiForgeryToken()
+    <div class="col-md-2 col-xs-12 col-lg-2 col-sm-12">
+        <select id="selectSearch" name="selectSearch" class="selectSearch form-control">
+            <option>All</option>
+            @if (categories != null && categories.Count > 0)
+            {
+                foreach (var item in categories)
+                {
+                    <option value="@item.Id">@item.CateogryName</option>
+                }
+            }
+        </select>
+    </div>
+    <div class="col-md-6 col-xs-12 col-lg-7 col-sm-12">
+        <input id="txtSearch" name="txtSearch" class="txtSearch form-control" type="search" value="" onkeyup="javascript: GetSuggestion(event);" />
+        <div id="divSearchContent" class="divSearchContent" style="z-index: 1; position: absolute; background: #fff; box-shadow: 0 7px 10px rgba(34, 25, 25, 0.4); border-radius: 5px; display:none;">
+
+        </div>
+    </div>
+    <div class="col-md-2 col-xs-12  col-lg-1 col-sm-12">
+        <input class="btnSearch btn btn-danger" type="submit" onclick="" />
+    </div>
+    <div class="col-md-2 col-xs-12 col-lg-2 col-sm-12">
+        <div class="row">
+            <a href="@Url.Action("PostFreeAddListing", "Home")" class="btn btn-success pull-right">Post Your Add</a>
+        </div>
+    </div>
+}
+

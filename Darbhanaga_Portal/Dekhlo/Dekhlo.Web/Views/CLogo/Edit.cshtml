@@ -1,0 +1,48 @@
+﻿@model Dekhlo.Web.Models.Logo
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm("Edit", "CLogo", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Logo</legend>
+
+        @Html.HiddenFor(model => model.Id)
+        @Html.HiddenFor(model => model.CreatedOn)
+        @Html.HiddenFor(model => model.CreatedBy)
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.TagContent)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.TagContent)
+            @Html.ValidationMessageFor(model => model.TagContent)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ImageContent)
+        </div>
+        <div class="editor-field">
+             @{
+                var base64 = Convert.ToBase64String(Model.ImageContent);
+                var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+            }
+            <img src="@imgSrc" />
+            <input id="fldImageContent" name="fldImageContent" type="file" />
+            @Html.ValidationMessageFor(model => model.TagContent)
+        </div>
+
+        <p>
+            <input type="submit" class="btn btn-primary" value="Save" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

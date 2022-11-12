@@ -1,0 +1,89 @@
+﻿@model Dekhlo.Web.Models.Cateogry
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/LayoutMain.cshtml";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Cateogry</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.CateogryName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.CateogryName)
+            @Html.ValidationMessageFor(model => model.CateogryName)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.IsVisitorCateogry)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.IsVisitorCateogry)
+            @Html.ValidationMessageFor(model => model.IsVisitorCateogry)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Status, "StatusCondition")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("Status", String.Empty)
+            @Html.ValidationMessageFor(model => model.Status)
+        </div>
+
+        @*<div class="editor-label">
+            @Html.LabelFor(model => model.CreatedOn)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.CreatedOn)
+            @Html.ValidationMessageFor(model => model.CreatedOn)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.CreatedBy)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.CreatedBy)
+            @Html.ValidationMessageFor(model => model.CreatedBy)
+        </div>*@
+
+        @*<div class="editor-label">
+            @Html.LabelFor(model => model.UpdatedOn)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.UpdatedOn)
+            @Html.ValidationMessageFor(model => model.UpdatedOn)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.UpdateBy)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.UpdateBy)
+            @Html.ValidationMessageFor(model => model.UpdateBy)
+        </div>*@
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ParentCateogry, "Cateogry2")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("ParentCateogry", String.Empty)
+            @Html.ValidationMessageFor(model => model.ParentCateogry)
+        </div>
+
+        <p>
+            <input type="submit" class="btn btn-primary" value="Create" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+

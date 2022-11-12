@@ -1,0 +1,702 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="PORTALModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="PORTALModelStoreContainer">
+    <EntitySet Name="Cateogries" EntityType="PORTALModel.Store.Cateogries" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Posts" EntityType="PORTALModel.Store.Posts" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="PostCateogryMappings" EntityType="PORTALModel.Store.PostCateogryMappings" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="PostImages" EntityType="PORTALModel.Store.PostImages" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="StatusConditions" EntityType="PORTALModel.Store.StatusConditions" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="SubCateogries" EntityType="PORTALModel.Store.SubCateogries" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="UserRegistrations" EntityType="PORTALModel.Store.UserRegistrations" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="VisitorCateogries" EntityType="PORTALModel.Store.VisitorCateogries" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK__Cateogry__Status__4316F928" Association="PORTALModel.Store.FK__Cateogry__Status__4316F928">
+      <End Role="StatusCondition" EntitySet="StatusConditions" />
+      <End Role="Cateogry" EntitySet="Cateogries" />
+    </AssociationSet>
+    <AssociationSet Name="FK__PostCateo__Cateo__5070F446" Association="PORTALModel.Store.FK__PostCateo__Cateo__5070F446">
+      <End Role="Cateogry" EntitySet="Cateogries" />
+      <End Role="PostCateogryMapping" EntitySet="PostCateogryMappings" />
+    </AssociationSet>
+    <AssociationSet Name="FK__SubCateog__Child__46E78A0C" Association="PORTALModel.Store.FK__SubCateog__Child__46E78A0C">
+      <End Role="Cateogry" EntitySet="Cateogries" />
+      <End Role="SubCateogry" EntitySet="SubCateogries" />
+    </AssociationSet>
+    <AssociationSet Name="FK__SubCateog__Paren__47DBAE45" Association="PORTALModel.Store.FK__SubCateog__Paren__47DBAE45">
+      <End Role="Cateogry" EntitySet="Cateogries" />
+      <End Role="SubCateogry" EntitySet="SubCateogries" />
+    </AssociationSet>
+    <AssociationSet Name="FK__VisitorCa__Cateo__5812160E" Association="PORTALModel.Store.FK__VisitorCa__Cateo__5812160E">
+      <End Role="Cateogry" EntitySet="Cateogries" />
+      <End Role="VisitorCateogry" EntitySet="VisitorCateogries" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Post__Status__4BAC3F29" Association="PORTALModel.Store.FK__Post__Status__4BAC3F29">
+      <End Role="StatusCondition" EntitySet="StatusConditions" />
+      <End Role="Post" EntitySet="Posts" />
+    </AssociationSet>
+    <AssociationSet Name="FK__PostCateo__PostI__4F7CD00D" Association="PORTALModel.Store.FK__PostCateo__PostI__4F7CD00D">
+      <End Role="Post" EntitySet="Posts" />
+      <End Role="PostCateogryMapping" EntitySet="PostCateogryMappings" />
+    </AssociationSet>
+    <AssociationSet Name="FK__PostImage__PostI__5441852A" Association="PORTALModel.Store.FK__PostImage__PostI__5441852A">
+      <End Role="Post" EntitySet="Posts" />
+      <End Role="PostImage" EntitySet="PostImages" />
+    </AssociationSet>
+    <AssociationSet Name="FK__UserRegis__Statu__3E52440B" Association="PORTALModel.Store.FK__UserRegis__Statu__3E52440B">
+      <End Role="StatusCondition" EntitySet="StatusConditions" />
+      <End Role="UserRegistration" EntitySet="UserRegistrations" />
+    </AssociationSet>
+    <AssociationSet Name="FK__VisitorCa__Visit__571DF1D5" Association="PORTALModel.Store.FK__VisitorCa__Visit__571DF1D5">
+      <End Role="UserRegistration" EntitySet="UserRegistrations" />
+      <End Role="VisitorCateogry" EntitySet="VisitorCateogries" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Cateogries">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CateogryName" Type="nvarchar" Nullable="true" MaxLength="100" />
+    <Property Name="IsVisitorCateogry" Type="bit" Nullable="true" />
+    <Property Name="Status" Type="int" Nullable="true" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="true" />
+    <Property Name="CreatedBy" Type="bigint" Nullable="true" />
+    <Property Name="UpdatedOn" Type="datetime" Nullable="true" />
+    <Property Name="UpdateBy" Type="bigint" Nullable="true" />
+  </EntityType>
+  <EntityType Name="Posts">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PostTitle" Type="nvarchar" Nullable="false" MaxLength="200" />
+    <Property Name="PostContent" Type="nvarchar" Nullable="false" MaxLength="300" />
+    <Property Name="Status" Type="int" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="true" />
+    <Property Name="CreatedBy" Type="bigint" Nullable="true" />
+    <Property Name="UpdatedOn" Type="datetime" Nullable="true" />
+    <Property Name="UpdateBy" Type="bigint" Nullable="true" />
+  </EntityType>
+  <EntityType Name="PostCateogryMappings">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PostId" Type="bigint" Nullable="true" />
+    <Property Name="CateogryId" Type="bigint" Nullable="true" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="true" />
+    <Property Name="CreatedBy" Type="bigint" Nullable="true" />
+    <Property Name="UpdatedOn" Type="datetime" Nullable="true" />
+    <Property Name="UpdateBy" Type="bigint" Nullable="true" />
+  </EntityType>
+  <EntityType Name="PostImages">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PostId" Type="bigint" Nullable="true" />
+    <Property Name="ImageUrl" Type="varchar" Nullable="true" MaxLength="300" />
+  </EntityType>
+  <EntityType Name="StatusConditions">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="StatusName" Type="varchar" Nullable="false" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="SubCateogries">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ChildCateogry" Type="bigint" Nullable="true" />
+    <Property Name="ParentCateogry" Type="bigint" Nullable="true" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="true" />
+    <Property Name="CreatedBy" Type="bigint" Nullable="true" />
+    <Property Name="UpdatedOn" Type="datetime" Nullable="true" />
+    <Property Name="UpdateBy" Type="bigint" Nullable="true" />
+  </EntityType>
+  <EntityType Name="UserRegistrations">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FirstName" Type="nvarchar" Nullable="true" MaxLength="100" />
+    <Property Name="MiddleName" Type="nvarchar" Nullable="true" MaxLength="100" />
+    <Property Name="LastName" Type="nvarchar" Nullable="true" MaxLength="100" />
+    <Property Name="Address" Type="nvarchar" Nullable="true" MaxLength="300" />
+    <Property Name="EmailId" Type="varchar" Nullable="true" MaxLength="100" />
+    <Property Name="MobileNo" Type="varchar" Nullable="true" MaxLength="13" />
+    <Property Name="UserName" Type="varchar" Nullable="false" MaxLength="100" />
+    <Property Name="Password" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="ProfilePic" Type="varbinary(max)" Nullable="true" />
+    <Property Name="IsVisitor" Type="bit" Nullable="true" />
+    <Property Name="Status" Type="int" Nullable="true" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="true" />
+    <Property Name="CreatedBy" Type="bigint" Nullable="true" />
+    <Property Name="UpdatedOn" Type="datetime" Nullable="true" />
+    <Property Name="UpdateBy" Type="bigint" Nullable="true" />
+  </EntityType>
+  <EntityType Name="VisitorCateogries">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="VisitorId" Type="bigint" Nullable="false" />
+    <Property Name="CateogryId" Type="bigint" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="true" />
+    <Property Name="CreatedBy" Type="bigint" Nullable="true" />
+    <Property Name="UpdatedOn" Type="datetime" Nullable="true" />
+    <Property Name="UpdateBy" Type="bigint" Nullable="true" />
+  </EntityType>
+  <Association Name="FK__Cateogry__Status__4316F928">
+    <End Role="StatusCondition" Type="PORTALModel.Store.StatusConditions" Multiplicity="0..1" />
+    <End Role="Cateogry" Type="PORTALModel.Store.Cateogries" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="StatusCondition">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Cateogry">
+        <PropertyRef Name="Status" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__PostCateo__Cateo__5070F446">
+    <End Role="Cateogry" Type="PORTALModel.Store.Cateogries" Multiplicity="0..1" />
+    <End Role="PostCateogryMapping" Type="PORTALModel.Store.PostCateogryMappings" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cateogry">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PostCateogryMapping">
+        <PropertyRef Name="CateogryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__SubCateog__Child__46E78A0C">
+    <End Role="Cateogry" Type="PORTALModel.Store.Cateogries" Multiplicity="0..1" />
+    <End Role="SubCateogry" Type="PORTALModel.Store.SubCateogries" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cateogry">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SubCateogry">
+        <PropertyRef Name="ChildCateogry" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__SubCateog__Paren__47DBAE45">
+    <End Role="Cateogry" Type="PORTALModel.Store.Cateogries" Multiplicity="0..1" />
+    <End Role="SubCateogry" Type="PORTALModel.Store.SubCateogries" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cateogry">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SubCateogry">
+        <PropertyRef Name="ParentCateogry" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__VisitorCa__Cateo__5812160E">
+    <End Role="Cateogry" Type="PORTALModel.Store.Cateogries" Multiplicity="1" />
+    <End Role="VisitorCateogry" Type="PORTALModel.Store.VisitorCateogries" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cateogry">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="VisitorCateogry">
+        <PropertyRef Name="CateogryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Post__Status__4BAC3F29">
+    <End Role="StatusCondition" Type="PORTALModel.Store.StatusConditions" Multiplicity="1" />
+    <End Role="Post" Type="PORTALModel.Store.Posts" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="StatusCondition">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Post">
+        <PropertyRef Name="Status" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__PostCateo__PostI__4F7CD00D">
+    <End Role="Post" Type="PORTALModel.Store.Posts" Multiplicity="0..1" />
+    <End Role="PostCateogryMapping" Type="PORTALModel.Store.PostCateogryMappings" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Post">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PostCateogryMapping">
+        <PropertyRef Name="PostId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__PostImage__PostI__5441852A">
+    <End Role="Post" Type="PORTALModel.Store.Posts" Multiplicity="0..1" />
+    <End Role="PostImage" Type="PORTALModel.Store.PostImages" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Post">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PostImage">
+        <PropertyRef Name="PostId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__UserRegis__Statu__3E52440B">
+    <End Role="StatusCondition" Type="PORTALModel.Store.StatusConditions" Multiplicity="0..1" />
+    <End Role="UserRegistration" Type="PORTALModel.Store.UserRegistrations" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="StatusCondition">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserRegistration">
+        <PropertyRef Name="Status" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__VisitorCa__Visit__571DF1D5">
+    <End Role="UserRegistration" Type="PORTALModel.Store.UserRegistrations" Multiplicity="1" />
+    <End Role="VisitorCateogry" Type="PORTALModel.Store.VisitorCateogries" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserRegistration">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="VisitorCateogry">
+        <PropertyRef Name="VisitorId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="PORTALModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="PORTALEntities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="Cateogries" EntityType="PORTALModel.Cateogry" />
+          <EntitySet Name="Posts" EntityType="PORTALModel.Post" />
+          <EntitySet Name="PostCateogryMappings" EntityType="PORTALModel.PostCateogryMapping" />
+          <EntitySet Name="PostImages" EntityType="PORTALModel.PostImage" />
+          <EntitySet Name="StatusConditions" EntityType="PORTALModel.StatusCondition" />
+          <EntitySet Name="SubCateogries" EntityType="PORTALModel.SubCateogry" />
+          <EntitySet Name="UserRegistrations" EntityType="PORTALModel.UserRegistration" />
+          <EntitySet Name="VisitorCateogries" EntityType="PORTALModel.VisitorCateogry" />
+          <AssociationSet Name="FK__Cateogry__Status__4316F928" Association="PORTALModel.FK__Cateogry__Status__4316F928">
+            <End Role="StatusCondition" EntitySet="StatusConditions" />
+            <End Role="Cateogry" EntitySet="Cateogries" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PostCateo__Cateo__5070F446" Association="PORTALModel.FK__PostCateo__Cateo__5070F446">
+            <End Role="Cateogry" EntitySet="Cateogries" />
+            <End Role="PostCateogryMapping" EntitySet="PostCateogryMappings" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SubCateog__Child__46E78A0C" Association="PORTALModel.FK__SubCateog__Child__46E78A0C">
+            <End Role="Cateogry" EntitySet="Cateogries" />
+            <End Role="SubCateogry" EntitySet="SubCateogries" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SubCateog__Paren__47DBAE45" Association="PORTALModel.FK__SubCateog__Paren__47DBAE45">
+            <End Role="Cateogry" EntitySet="Cateogries" />
+            <End Role="SubCateogry" EntitySet="SubCateogries" />
+          </AssociationSet>
+          <AssociationSet Name="FK__VisitorCa__Cateo__5812160E" Association="PORTALModel.FK__VisitorCa__Cateo__5812160E">
+            <End Role="Cateogry" EntitySet="Cateogries" />
+            <End Role="VisitorCateogry" EntitySet="VisitorCateogries" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Post__Status__4BAC3F29" Association="PORTALModel.FK__Post__Status__4BAC3F29">
+            <End Role="StatusCondition" EntitySet="StatusConditions" />
+            <End Role="Post" EntitySet="Posts" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PostCateo__PostI__4F7CD00D" Association="PORTALModel.FK__PostCateo__PostI__4F7CD00D">
+            <End Role="Post" EntitySet="Posts" />
+            <End Role="PostCateogryMapping" EntitySet="PostCateogryMappings" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PostImage__PostI__5441852A" Association="PORTALModel.FK__PostImage__PostI__5441852A">
+            <End Role="Post" EntitySet="Posts" />
+            <End Role="PostImage" EntitySet="PostImages" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UserRegis__Statu__3E52440B" Association="PORTALModel.FK__UserRegis__Statu__3E52440B">
+            <End Role="StatusCondition" EntitySet="StatusConditions" />
+            <End Role="UserRegistration" EntitySet="UserRegistrations" />
+          </AssociationSet>
+          <AssociationSet Name="FK__VisitorCa__Visit__571DF1D5" Association="PORTALModel.FK__VisitorCa__Visit__571DF1D5">
+            <End Role="UserRegistration" EntitySet="UserRegistrations" />
+            <End Role="VisitorCateogry" EntitySet="VisitorCateogries" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Cateogry">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int64" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="CateogryName" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="IsVisitorCateogry" />
+          <Property Type="Int32" Name="Status" />
+          <Property Type="DateTime" Name="CreatedOn" Precision="3" />
+          <Property Type="Int64" Name="CreatedBy" />
+          <Property Type="DateTime" Name="UpdatedOn" Precision="3" />
+          <Property Type="Int64" Name="UpdateBy" />
+          <NavigationProperty Name="StatusCondition" Relationship="PORTALModel.FK__Cateogry__Status__4316F928" FromRole="Cateogry" ToRole="StatusCondition" />
+          <NavigationProperty Name="PostCateogryMappings" Relationship="PORTALModel.FK__PostCateo__Cateo__5070F446" FromRole="Cateogry" ToRole="PostCateogryMapping" />
+          <NavigationProperty Name="SubCateogries" Relationship="PORTALModel.FK__SubCateog__Child__46E78A0C" FromRole="Cateogry" ToRole="SubCateogry" />
+          <NavigationProperty Name="SubCateogries1" Relationship="PORTALModel.FK__SubCateog__Paren__47DBAE45" FromRole="Cateogry" ToRole="SubCateogry" />
+          <NavigationProperty Name="VisitorCateogries" Relationship="PORTALModel.FK__VisitorCa__Cateo__5812160E" FromRole="Cateogry" ToRole="VisitorCateogry" />
+        </EntityType>
+        <EntityType Name="Post">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int64" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="PostTitle" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="PostContent" Nullable="false" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="Status" Nullable="false" />
+          <Property Type="DateTime" Name="CreatedOn" Precision="3" />
+          <Property Type="Int64" Name="CreatedBy" />
+          <Property Type="DateTime" Name="UpdatedOn" Precision="3" />
+          <Property Type="Int64" Name="UpdateBy" />
+          <NavigationProperty Name="StatusCondition" Relationship="PORTALModel.FK__Post__Status__4BAC3F29" FromRole="Post" ToRole="StatusCondition" />
+          <NavigationProperty Name="PostCateogryMappings" Relationship="PORTALModel.FK__PostCateo__PostI__4F7CD00D" FromRole="Post" ToRole="PostCateogryMapping" />
+          <NavigationProperty Name="PostImages" Relationship="PORTALModel.FK__PostImage__PostI__5441852A" FromRole="Post" ToRole="PostImage" />
+        </EntityType>
+        <EntityType Name="PostCateogryMapping">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int64" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int64" Name="PostId" />
+          <Property Type="Int64" Name="CateogryId" />
+          <Property Type="DateTime" Name="CreatedOn" Precision="3" />
+          <Property Type="Int64" Name="CreatedBy" />
+          <Property Type="DateTime" Name="UpdatedOn" Precision="3" />
+          <Property Type="Int64" Name="UpdateBy" />
+          <NavigationProperty Name="Cateogry" Relationship="PORTALModel.FK__PostCateo__Cateo__5070F446" FromRole="PostCateogryMapping" ToRole="Cateogry" />
+          <NavigationProperty Name="Post" Relationship="PORTALModel.FK__PostCateo__PostI__4F7CD00D" FromRole="PostCateogryMapping" ToRole="Post" />
+        </EntityType>
+        <EntityType Name="PostImage">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int64" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int64" Name="PostId" />
+          <Property Type="String" Name="ImageUrl" MaxLength="300" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Post" Relationship="PORTALModel.FK__PostImage__PostI__5441852A" FromRole="PostImage" ToRole="Post" />
+        </EntityType>
+        <EntityType Name="StatusCondition">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="StatusName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Cateogries" Relationship="PORTALModel.FK__Cateogry__Status__4316F928" FromRole="StatusCondition" ToRole="Cateogry" />
+          <NavigationProperty Name="Posts" Relationship="PORTALModel.FK__Post__Status__4BAC3F29" FromRole="StatusCondition" ToRole="Post" />
+          <NavigationProperty Name="UserRegistrations" Relationship="PORTALModel.FK__UserRegis__Statu__3E52440B" FromRole="StatusCondition" ToRole="UserRegistration" />
+        </EntityType>
+        <EntityType Name="SubCateogry">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int64" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int64" Name="ChildCateogry" />
+          <Property Type="Int64" Name="ParentCateogry" />
+          <Property Type="DateTime" Name="CreatedOn" Precision="3" />
+          <Property Type="Int64" Name="CreatedBy" />
+          <Property Type="DateTime" Name="UpdatedOn" Precision="3" />
+          <Property Type="Int64" Name="UpdateBy" />
+          <NavigationProperty Name="Cateogry" Relationship="PORTALModel.FK__SubCateog__Child__46E78A0C" FromRole="SubCateogry" ToRole="Cateogry" />
+          <NavigationProperty Name="Cateogry1" Relationship="PORTALModel.FK__SubCateog__Paren__47DBAE45" FromRole="SubCateogry" ToRole="Cateogry" />
+        </EntityType>
+        <EntityType Name="UserRegistration">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int64" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="FirstName" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="MiddleName" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="LastName" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Address" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="EmailId" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="MobileNo" MaxLength="13" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="UserName" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Password" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Binary" Name="ProfilePic" MaxLength="Max" FixedLength="false" />
+          <Property Type="Boolean" Name="IsVisitor" />
+          <Property Type="Int32" Name="Status" />
+          <Property Type="DateTime" Name="CreatedOn" Precision="3" />
+          <Property Type="Int64" Name="CreatedBy" />
+          <Property Type="DateTime" Name="UpdatedOn" Precision="3" />
+          <Property Type="Int64" Name="UpdateBy" />
+          <NavigationProperty Name="StatusCondition" Relationship="PORTALModel.FK__UserRegis__Statu__3E52440B" FromRole="UserRegistration" ToRole="StatusCondition" />
+          <NavigationProperty Name="VisitorCateogries" Relationship="PORTALModel.FK__VisitorCa__Visit__571DF1D5" FromRole="UserRegistration" ToRole="VisitorCateogry" />
+        </EntityType>
+        <EntityType Name="VisitorCateogry">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int64" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int64" Name="VisitorId" Nullable="false" />
+          <Property Type="Int64" Name="CateogryId" Nullable="false" />
+          <Property Type="DateTime" Name="CreatedOn" Precision="3" />
+          <Property Type="Int64" Name="CreatedBy" />
+          <Property Type="DateTime" Name="UpdatedOn" Precision="3" />
+          <Property Type="Int64" Name="UpdateBy" />
+          <NavigationProperty Name="Cateogry" Relationship="PORTALModel.FK__VisitorCa__Cateo__5812160E" FromRole="VisitorCateogry" ToRole="Cateogry" />
+          <NavigationProperty Name="UserRegistration" Relationship="PORTALModel.FK__VisitorCa__Visit__571DF1D5" FromRole="VisitorCateogry" ToRole="UserRegistration" />
+        </EntityType>
+        <Association Name="FK__Cateogry__Status__4316F928">
+          <End Type="PORTALModel.StatusCondition" Role="StatusCondition" Multiplicity="0..1" />
+          <End Type="PORTALModel.Cateogry" Role="Cateogry" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StatusCondition">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Cateogry">
+              <PropertyRef Name="Status" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PostCateo__Cateo__5070F446">
+          <End Type="PORTALModel.Cateogry" Role="Cateogry" Multiplicity="0..1" />
+          <End Type="PORTALModel.PostCateogryMapping" Role="PostCateogryMapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cateogry">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PostCateogryMapping">
+              <PropertyRef Name="CateogryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SubCateog__Child__46E78A0C">
+          <End Type="PORTALModel.Cateogry" Role="Cateogry" Multiplicity="0..1" />
+          <End Type="PORTALModel.SubCateogry" Role="SubCateogry" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cateogry">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SubCateogry">
+              <PropertyRef Name="ChildCateogry" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SubCateog__Paren__47DBAE45">
+          <End Type="PORTALModel.Cateogry" Role="Cateogry" Multiplicity="0..1" />
+          <End Type="PORTALModel.SubCateogry" Role="SubCateogry" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cateogry">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SubCateogry">
+              <PropertyRef Name="ParentCateogry" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__VisitorCa__Cateo__5812160E">
+          <End Type="PORTALModel.Cateogry" Role="Cateogry" Multiplicity="1" />
+          <End Type="PORTALModel.VisitorCateogry" Role="VisitorCateogry" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cateogry">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="VisitorCateogry">
+              <PropertyRef Name="CateogryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Post__Status__4BAC3F29">
+          <End Type="PORTALModel.StatusCondition" Role="StatusCondition" Multiplicity="1" />
+          <End Type="PORTALModel.Post" Role="Post" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StatusCondition">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Post">
+              <PropertyRef Name="Status" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PostCateo__PostI__4F7CD00D">
+          <End Type="PORTALModel.Post" Role="Post" Multiplicity="0..1" />
+          <End Type="PORTALModel.PostCateogryMapping" Role="PostCateogryMapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Post">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PostCateogryMapping">
+              <PropertyRef Name="PostId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PostImage__PostI__5441852A">
+          <End Type="PORTALModel.Post" Role="Post" Multiplicity="0..1" />
+          <End Type="PORTALModel.PostImage" Role="PostImage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Post">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PostImage">
+              <PropertyRef Name="PostId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UserRegis__Statu__3E52440B">
+          <End Type="PORTALModel.StatusCondition" Role="StatusCondition" Multiplicity="0..1" />
+          <End Type="PORTALModel.UserRegistration" Role="UserRegistration" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StatusCondition">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserRegistration">
+              <PropertyRef Name="Status" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__VisitorCa__Visit__571DF1D5">
+          <End Type="PORTALModel.UserRegistration" Role="UserRegistration" Multiplicity="1" />
+          <End Type="PORTALModel.VisitorCateogry" Role="VisitorCateogry" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserRegistration">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="VisitorCateogry">
+              <PropertyRef Name="VisitorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="PORTALModelStoreContainer" CdmEntityContainer="PORTALEntities">
+    <EntitySetMapping Name="Cateogries">
+      <EntityTypeMapping TypeName="IsTypeOf(PORTALModel.Cateogry)">
+        <MappingFragment StoreEntitySet="Cateogries">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="CateogryName" ColumnName="CateogryName" />
+          <ScalarProperty Name="IsVisitorCateogry" ColumnName="IsVisitorCateogry" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+          <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Posts">
+      <EntityTypeMapping TypeName="IsTypeOf(PORTALModel.Post)">
+        <MappingFragment StoreEntitySet="Posts">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="PostTitle" ColumnName="PostTitle" />
+          <ScalarProperty Name="PostContent" ColumnName="PostContent" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+          <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PostCateogryMappings">
+      <EntityTypeMapping TypeName="IsTypeOf(PORTALModel.PostCateogryMapping)">
+        <MappingFragment StoreEntitySet="PostCateogryMappings">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="PostId" ColumnName="PostId" />
+          <ScalarProperty Name="CateogryId" ColumnName="CateogryId" />
+          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+          <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PostImages">
+      <EntityTypeMapping TypeName="IsTypeOf(PORTALModel.PostImage)">
+        <MappingFragment StoreEntitySet="PostImages">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="PostId" ColumnName="PostId" />
+          <ScalarProperty Name="ImageUrl" ColumnName="ImageUrl" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="StatusConditions">
+      <EntityTypeMapping TypeName="IsTypeOf(PORTALModel.StatusCondition)">
+        <MappingFragment StoreEntitySet="StatusConditions">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="StatusName" ColumnName="StatusName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SubCateogries">
+      <EntityTypeMapping TypeName="IsTypeOf(PORTALModel.SubCateogry)">
+        <MappingFragment StoreEntitySet="SubCateogries">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="ChildCateogry" ColumnName="ChildCateogry" />
+          <ScalarProperty Name="ParentCateogry" ColumnName="ParentCateogry" />
+          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+          <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserRegistrations">
+      <EntityTypeMapping TypeName="IsTypeOf(PORTALModel.UserRegistration)">
+        <MappingFragment StoreEntitySet="UserRegistrations">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="EmailId" ColumnName="EmailId" />
+          <ScalarProperty Name="MobileNo" ColumnName="MobileNo" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="ProfilePic" ColumnName="ProfilePic" />
+          <ScalarProperty Name="IsVisitor" ColumnName="IsVisitor" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+          <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VisitorCateogries">
+      <EntityTypeMapping TypeName="IsTypeOf(PORTALModel.VisitorCateogry)">
+        <MappingFragment StoreEntitySet="VisitorCateogries">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="VisitorId" ColumnName="VisitorId" />
+          <ScalarProperty Name="CateogryId" ColumnName="CateogryId" />
+          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+          <ScalarProperty Name="UpdateBy" ColumnName="UpdateBy" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <DesignerProperty Name="UseLegacyProvider" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

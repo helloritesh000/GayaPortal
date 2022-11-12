@@ -1,0 +1,17 @@
+﻿@model Dekhlo.Web.Models.PageContent
+@{
+    ViewBag.Title = "FeatureAds";
+    Layout = "~/Views/Shared/LayoutResponsive.cshtml";
+}
+
+<h2>Featured Ads</h2>
+@if (Model != null && !String.IsNullOrEmpty(Model.PageText))
+{
+    @Html.Raw(Model.PageText)
+}
+
+
+
+
+
+

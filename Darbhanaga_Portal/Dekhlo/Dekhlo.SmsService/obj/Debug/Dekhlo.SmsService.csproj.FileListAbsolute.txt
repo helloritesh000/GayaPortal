@@ -1,0 +1,6 @@
+E:\Projects\TFSOnline_Sumit\Darbhanaga_Portal\Dekhlo\Dekhlo.SmsService\bin\Dekhlo.SmsService.dll.config
+E:\Projects\TFSOnline_Sumit\Darbhanaga_Portal\Dekhlo\Dekhlo.SmsService\bin\Dekhlo.SmsService.dll
+E:\Projects\TFSOnline_Sumit\Darbhanaga_Portal\Dekhlo\Dekhlo.SmsService\bin\Dekhlo.SmsService.pdb
+E:\Projects\TFSOnline_Sumit\Darbhanaga_Portal\Dekhlo\Dekhlo.SmsService\obj\Debug\Dekhlo.SmsService.csprojResolveAssemblyReference.cache
+E:\Projects\TFSOnline_Sumit\Darbhanaga_Portal\Dekhlo\Dekhlo.SmsService\obj\Debug\Dekhlo.SmsService.dll
+E:\Projects\TFSOnline_Sumit\Darbhanaga_Portal\Dekhlo\Dekhlo.SmsService\obj\Debug\Dekhlo.SmsService.pdb

@@ -1,0 +1,111 @@
+﻿@using Dekhlo.Web.Models
+
+@{
+    long id = (Url.RequestContext.RouteData.Values["id"] != null) ? Convert.ToInt64(Url.RequestContext.RouteData.Values["id"]) : 0;
+    Memory objMemory=null;
+    if(id > 0)
+    {
+        PORTALEntitiy db = new PORTALEntitiy();
+        //List<Memory> lsMemory = null;
+        objMemory = new Memory();
+        UserRegistration modeluser = new UserRegistration();
+        objMemory = db.Memories.Include("UserRegistration").Include("MemoryPictures").FirstOrDefault(m => m.Id == id);
+    }
+}
+
+
+
+
+<div class="col-md-12 divAddListingParent">
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-lg-12">
+
+            @if (objMemory != null && objMemory.Id > 0)
+            {
+                var item = objMemory;
+                //foreach (var item in lsMemory)
+                //{
+                    <div class="col-md-12" style="margin-bottom: 20px;">
+                        <div class="row">
+                            <div class="col-md-3 divProdImgParent">
+                                <div class="row">
+                                    @if (item != null && item.MemoryPictures != null && item.MemoryPictures.Count > 0)
+                                    {
+                                        foreach (var img in item.MemoryPictures)
+                                        {
+                                            <div id="bigpic" class="b">
+                                                <img src="@img.ImageUrl" alt="Image" class="img img-responsive" />
+                                                <p id="desc"></p>
+                                            </div>
+                                            break;
+                                        }
+                                    }
+
+                                    <div id="thumbs" class="thumbs">
+                                        <ul>
+                                            @if (item != null && item.MemoryPictures != null && item.MemoryPictures.Count > 0)
+                                            {
+                                                foreach (var img in item.MemoryPictures)
+                                                {
+                                                    <li>
+                                                        <a href="@img.ImageUrl" rel="@img.ImageUrl">
+                                                            <img src="@img.ImageUrl" alt="thumbnail" class="img img-responsive" />
+                                                        </a>
+                                                    </li>
+                                                }
+                                            }
+                                            <div style="clear: both;"></div>
+                                        </ul>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-9">
+                                @*<h2>@item.Title</h2>*@
+
+                                @if (Session["LoggedInUserId"] != null && (User.IsInRole("ADMINISTRATOR") || (long)Session["LoggedInUserId"] == item.UserId))
+                                {
+                                    <div>
+                                        <span class="pull-right">
+                                            @Html.ActionLink("Edit", "ShareYourMemoryEdit", new { id = item.Id, title=item.Title.ToSeoUrl() })
+                                            @if (Session["LoggedInUserId"] != null && (User.IsInRole("ADMINISTRATOR")))
+                                            {
+                                                <text>|</text>
+                                                using (Html.BeginForm("DeleteShareYourMemory", "Home", new { id = item.Id }, FormMethod.Post, new { @style = "display:inline;" }))
+                                                {
+                                                    <input type="submit" class="btn btn-link" value="Delete" onclick="javascript: return confirm('Are you sure you want to delete?');" style="display: inline; padding: 0px;" />
+                                                }
+                                            }
+                                        </span>
+                                        <div style="clear:both;"></div>
+                                    </div>
+                                }
+                                <h2><a href="@Url.Action("ShareYourMemoriesSingle", "Home", new { id = item.Id, title=item.Title.ToSeoUrl()})">@item.Title</a></h2>
+                                <hr style="margin: 0px;" />
+                                <div>
+                                    <span>@Html.DisplayName("Name") : @Html.DisplayFor(model => item.UserRegistration.FirstName) @Html.DisplayFor(model => item.UserRegistration.LastName)</span>
+                                    <i class="pull-right">@String.Format("{0:D}", item.CreatedOn)</i>
+                                    <div style="clear: both;"></div>
+                                </div>
+                                <hr style="margin: 0px;" />
+                                <br />
+                                <p>@item.Description</p>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="clear: both;"></div>
+                    <hr />
+                    <div class="fb-share-button" data-href="http://localhost:13974/" data-layout="button_count" data-mobile-iframe="true"></div>
+                    <hr />
+                    <div class="fb-comments" data-href="http://localhost:13974/" data-numposts="5"></div>
+                    <hr />
+                //}
+            }
+
+        </div>
+    </div>
+</div>
+
+

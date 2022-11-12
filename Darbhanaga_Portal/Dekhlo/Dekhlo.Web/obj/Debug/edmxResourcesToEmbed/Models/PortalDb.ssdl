@@ -1,0 +1,641 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="PORTALModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Cateogry">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CateogryName" Type="nvarchar" MaxLength="100" />
+    <Property Name="IsVisitorCateogry" Type="bit" />
+    <Property Name="Status" Type="int" />
+    <Property Name="CreatedOn" Type="datetime" />
+    <Property Name="CreatedBy" Type="bigint" />
+    <Property Name="UpdatedOn" Type="datetime" />
+    <Property Name="UpdateBy" Type="bigint" />
+    <Property Name="ParentCateogry" Type="bigint" />
+  </EntityType>
+  <EntityType Name="Enquiry">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EmailTo" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="EmailFrom" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="FromMobileNumber" Type="varchar" MaxLength="13" Nullable="false" />
+    <Property Name="EnquirySubject" Type="varchar" MaxLength="13" Nullable="false" />
+    <Property Name="EnquiryDescription" Type="varchar" MaxLength="500" Nullable="false" />
+    <Property Name="EnquiryDocument" Type="varchar(max)" />
+    <Property Name="Status" Type="int" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime" />
+    <Property Name="CreatedBy" Type="bigint" />
+    <Property Name="UpdatedOn" Type="datetime" />
+    <Property Name="UpdateBy" Type="bigint" />
+  </EntityType>
+  <EntityType Name="ExceptionLogger">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ExceptionPath" Type="varchar(max)" />
+    <Property Name="ExceptionMessage" Type="varchar(max)" />
+    <Property Name="ExceptionStackTrace" Type="varchar(max)" />
+    <Property Name="ExceptionLoggedBy" Type="varchar(max)" />
+    <Property Name="ExceptionLoggedOn" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Logo">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ImageContent" Type="image" Nullable="false" />
+    <Property Name="TagContent" Type="nvarchar" MaxLength="300" />
+  </EntityType>
+  <EntityType Name="Memory">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserId" Type="bigint" Nullable="false" />
+    <Property Name="ProfilePic" Type="image" />
+    <Property Name="FirstName" Type="nvarchar" MaxLength="100" />
+    <Property Name="LastName" Type="nvarchar" MaxLength="100" />
+    <Property Name="EmailId" Type="varchar" MaxLength="100" />
+    <Property Name="MobileNo" Type="varchar" MaxLength="13" />
+    <Property Name="Title" Type="nvarchar" MaxLength="300" />
+    <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime" />
+    <Property Name="CreatedBy" Type="bigint" />
+    <Property Name="UpdatedOn" Type="datetime" />
+    <Property Name="UpdatedOBy" Type="bigint" />
+  </EntityType>
+  <EntityType Name="MemoryPicture">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MemoryId" Type="bigint" Nullable="false" />
+    <Property Name="ImageUrl" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Otp">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserId" Type="bigint" Nullable="false" />
+    <Property Name="OtpCode" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="IsActive" Type="bit" />
+    <Property Name="IsVerified" Type="bit" />
+    <Property Name="CreatedOn" Type="datetime" />
+  </EntityType>
+  <EntityType Name="PageContent">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PageType" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="PageText" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime" />
+    <Property Name="CreatedBy" Type="bigint" />
+    <Property Name="UpdatedOn" Type="datetime" />
+    <Property Name="UpdateBy" Type="bigint" />
+  </EntityType>
+  <EntityType Name="PopularSearch">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SearchParameter" Type="varchar" MaxLength="500" />
+    <Property Name="SearchedId" Type="bigint" />
+  </EntityType>
+  <EntityType Name="Post">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PostTitle" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="PostContent" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Status" Type="int" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime" />
+    <Property Name="CreatedBy" Type="bigint" />
+    <Property Name="UpdatedOn" Type="datetime" />
+    <Property Name="UpdateBy" Type="bigint" />
+    <Property Name="PostType" Type="varchar(max)" />
+    <Property Name="UserId" Type="bigint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PostCateogryMapping">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PostId" Type="bigint" />
+    <Property Name="CateogryId" Type="bigint" />
+    <Property Name="CreatedOn" Type="datetime" />
+    <Property Name="CreatedBy" Type="bigint" />
+    <Property Name="UpdatedOn" Type="datetime" />
+    <Property Name="UpdateBy" Type="bigint" />
+  </EntityType>
+  <EntityType Name="PostImage">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PostId" Type="bigint" />
+    <Property Name="ImageUrl" Type="varchar" MaxLength="300" />
+  </EntityType>
+  <EntityType Name="Pvc">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserId" Type="bigint" Nullable="false" />
+    <Property Name="NumberofCopies" Type="int" Nullable="false" />
+    <Property Name="PinCode" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime" />
+    <Property Name="CreatedBy" Type="bigint" />
+    <Property Name="UpdatedOn" Type="datetime" />
+    <Property Name="UpdateBy" Type="bigint" />
+    <Property Name="IsTermAccepted" Type="bit" />
+  </EntityType>
+  <EntityType Name="PvcAdharDocument">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DocumentUrl" Type="varchar(max)" />
+    <Property Name="PvcId" Type="bigint" />
+  </EntityType>
+  <EntityType Name="SearchYourNeed">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="LinkId" Type="bigint" Nullable="false" />
+    <Property Name="UserId" Type="bigint" Nullable="false" />
+    <Property Name="FirstName" Type="nvarchar" MaxLength="100" />
+    <Property Name="LastName" Type="nvarchar" MaxLength="100" />
+    <Property Name="MobileNo" Type="varchar" MaxLength="13" Nullable="false" />
+    <Property Name="Address" Type="nvarchar" MaxLength="300" />
+    <Property Name="PinCode" Type="nvarchar" MaxLength="20" />
+    <Property Name="ProfilePic" Type="image" />
+    <Property Name="Status" Type="bit" />
+    <Property Name="CreatedOn" Type="datetime" />
+    <Property Name="CreatedBy" Type="bigint" />
+    <Property Name="UpdatedOn" Type="datetime" />
+    <Property Name="UpdateBy" Type="bigint" />
+  </EntityType>
+  <EntityType Name="SearchYourNeedLink">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="LinkType" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="LinkText" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="Status" Type="bit" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime" />
+    <Property Name="CreatedBy" Type="bigint" />
+    <Property Name="UpdatedOn" Type="datetime" />
+    <Property Name="UpdateBy" Type="bigint" />
+  </EntityType>
+  <EntityType Name="SliderConfig">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Description" Type="varchar" MaxLength="500" />
+    <Property Name="ImageUrl" Type="varchar" MaxLength="300" />
+  </EntityType>
+  <EntityType Name="StatusCondition">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="StatusName" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UserRegistration">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FirstName" Type="nvarchar" MaxLength="100" />
+    <Property Name="MiddleName" Type="nvarchar" MaxLength="100" />
+    <Property Name="LastName" Type="nvarchar" MaxLength="100" />
+    <Property Name="Address" Type="nvarchar" MaxLength="300" />
+    <Property Name="EmailId" Type="varchar" MaxLength="100" />
+    <Property Name="MobileNo" Type="varchar" MaxLength="13" />
+    <Property Name="UserName" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="ProfilePic" Type="image" />
+    <Property Name="IsVisitor" Type="bit" />
+    <Property Name="Status" Type="int" />
+    <Property Name="CreatedOn" Type="datetime" />
+    <Property Name="CreatedBy" Type="bigint" />
+    <Property Name="UpdatedOn" Type="datetime" />
+    <Property Name="UpdateBy" Type="bigint" />
+    <Property Name="PinCode" Type="nvarchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="VisitorCateogry">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="VisitorId" Type="bigint" Nullable="false" />
+    <Property Name="CateogryId" Type="bigint" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime" />
+    <Property Name="CreatedBy" Type="bigint" />
+    <Property Name="UpdatedOn" Type="datetime" />
+    <Property Name="UpdateBy" Type="bigint" />
+  </EntityType>
+  <EntityType Name="webpages_Membership">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="CreateDate" Type="datetime" />
+    <Property Name="ConfirmationToken" Type="nvarchar" MaxLength="128" />
+    <Property Name="IsConfirmed" Type="bit" />
+    <Property Name="LastPasswordFailureDate" Type="datetime" />
+    <Property Name="PasswordFailuresSinceLastSuccess" Type="int" Nullable="false" />
+    <Property Name="Password" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="PasswordChangedDate" Type="datetime" />
+    <Property Name="PasswordSalt" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="PasswordVerificationToken" Type="nvarchar" MaxLength="128" />
+    <Property Name="PasswordVerificationTokenExpirationDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="webpages_OAuthMembership">
+    <Key>
+      <PropertyRef Name="Provider" />
+      <PropertyRef Name="ProviderUserId" />
+    </Key>
+    <Property Name="Provider" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="ProviderUserId" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="UserId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="webpages_Roles">
+    <Key>
+      <PropertyRef Name="RoleId" />
+    </Key>
+    <Property Name="RoleId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RoleName" Type="nvarchar" MaxLength="256" Nullable="false" />
+  </EntityType>
+  <EntityType Name="webpages_UsersInRoles">
+    <Key>
+      <PropertyRef Name="UserId" />
+      <PropertyRef Name="RoleId" />
+    </Key>
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="RoleId" Type="int" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'PORTAL.dbo.Search' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="Search">
+    <Key>
+      <PropertyRef Name="ContentId" />
+      <PropertyRef Name="Title" />
+      <PropertyRef Name="SearchContent" />
+      <PropertyRef Name="SearchType" />
+    </Key>
+    <Property Name="Id" Type="bigint" />
+    <Property Name="ContentId" Type="bigint" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="SearchContent" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="SearchType" Type="varchar" MaxLength="14" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__Cateogry__Parent__4E88ABD4">
+    <End Role="Cateogry" Type="Self.Cateogry" Multiplicity="0..1" />
+    <End Role="Cateogry1" Type="Self.Cateogry" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cateogry">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Cateogry1">
+        <PropertyRef Name="ParentCateogry" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Cateogry__Status__4F7CD00D">
+    <End Role="StatusCondition" Type="Self.StatusCondition" Multiplicity="0..1" />
+    <End Role="Cateogry" Type="Self.Cateogry" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="StatusCondition">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Cateogry">
+        <PropertyRef Name="Status" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Enquiry__Status__5070F446">
+    <End Role="StatusCondition" Type="Self.StatusCondition" Multiplicity="1" />
+    <End Role="Enquiry" Type="Self.Enquiry" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="StatusCondition">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Enquiry">
+        <PropertyRef Name="Status" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Memory__UserId__5165187F">
+    <End Role="UserRegistration" Type="Self.UserRegistration" Multiplicity="1" />
+    <End Role="Memory" Type="Self.Memory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserRegistration">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Memory">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__MemoryPic__Memor__52593CB8">
+    <End Role="Memory" Type="Self.Memory" Multiplicity="1" />
+    <End Role="MemoryPicture" Type="Self.MemoryPicture" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Memory">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="MemoryPicture">
+        <PropertyRef Name="MemoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Otp__UserId__160F4887">
+    <End Role="UserRegistration" Type="Self.UserRegistration" Multiplicity="1" />
+    <End Role="Otp" Type="Self.Otp" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserRegistration">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Otp">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Post__Status__534D60F1">
+    <End Role="StatusCondition" Type="Self.StatusCondition" Multiplicity="1" />
+    <End Role="Post" Type="Self.Post" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="StatusCondition">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Post">
+        <PropertyRef Name="Status" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Post__UserId__5441852A">
+    <End Role="UserRegistration" Type="Self.UserRegistration" Multiplicity="1" />
+    <End Role="Post" Type="Self.Post" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserRegistration">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Post">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__PostCateo__Cateo__5535A963">
+    <End Role="Cateogry" Type="Self.Cateogry" Multiplicity="0..1" />
+    <End Role="PostCateogryMapping" Type="Self.PostCateogryMapping" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cateogry">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PostCateogryMapping">
+        <PropertyRef Name="CateogryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__PostCateo__PostI__5629CD9C">
+    <End Role="Post" Type="Self.Post" Multiplicity="0..1" />
+    <End Role="PostCateogryMapping" Type="Self.PostCateogryMapping" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Post">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PostCateogryMapping">
+        <PropertyRef Name="PostId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__PostImage__PostI__571DF1D5">
+    <End Role="Post" Type="Self.Post" Multiplicity="0..1" />
+    <End Role="PostImage" Type="Self.PostImage" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Post">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PostImage">
+        <PropertyRef Name="PostId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Pvc__UserId__5812160E">
+    <End Role="UserRegistration" Type="Self.UserRegistration" Multiplicity="1" />
+    <End Role="Pvc" Type="Self.Pvc" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserRegistration">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Pvc">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__PvcAdharD__PvcId__59063A47">
+    <End Role="Pvc" Type="Self.Pvc" Multiplicity="0..1" />
+    <End Role="PvcAdharDocument" Type="Self.PvcAdharDocument" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pvc">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PvcAdharDocument">
+        <PropertyRef Name="PvcId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__SearchYou__LinkI__59FA5E80">
+    <End Role="SearchYourNeedLink" Type="Self.SearchYourNeedLink" Multiplicity="1" />
+    <End Role="SearchYourNeed" Type="Self.SearchYourNeed" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SearchYourNeedLink">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SearchYourNeed">
+        <PropertyRef Name="LinkId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__SearchYou__UserI__5AEE82B9">
+    <End Role="UserRegistration" Type="Self.UserRegistration" Multiplicity="1" />
+    <End Role="SearchYourNeed" Type="Self.SearchYourNeed" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserRegistration">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SearchYourNeed">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__UserRegis__Statu__5BE2A6F2">
+    <End Role="StatusCondition" Type="Self.StatusCondition" Multiplicity="0..1" />
+    <End Role="UserRegistration" Type="Self.UserRegistration" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="StatusCondition">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserRegistration">
+        <PropertyRef Name="Status" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__VisitorCa__Cateo__5CD6CB2B">
+    <End Role="Cateogry" Type="Self.Cateogry" Multiplicity="1" />
+    <End Role="VisitorCateogry" Type="Self.VisitorCateogry" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cateogry">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="VisitorCateogry">
+        <PropertyRef Name="CateogryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__VisitorCa__Visit__5DCAEF64">
+    <End Role="UserRegistration" Type="Self.UserRegistration" Multiplicity="1" />
+    <End Role="VisitorCateogry" Type="Self.VisitorCateogry" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserRegistration">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="VisitorCateogry">
+        <PropertyRef Name="VisitorId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_RoleId">
+    <End Role="webpages_Roles" Type="Self.webpages_Roles" Multiplicity="1" />
+    <End Role="webpages_UsersInRoles" Type="Self.webpages_UsersInRoles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="webpages_Roles">
+        <PropertyRef Name="RoleId" />
+      </Principal>
+      <Dependent Role="webpages_UsersInRoles">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="PORTALModelStoreContainer">
+    <EntitySet Name="Cateogry" EntityType="Self.Cateogry" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Enquiry" EntityType="Self.Enquiry" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ExceptionLogger" EntityType="Self.ExceptionLogger" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Logo" EntityType="Self.Logo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Memory" EntityType="Self.Memory" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MemoryPicture" EntityType="Self.MemoryPicture" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Otp" EntityType="Self.Otp" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PageContent" EntityType="Self.PageContent" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PopularSearch" EntityType="Self.PopularSearch" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Post" EntityType="Self.Post" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PostCateogryMapping" EntityType="Self.PostCateogryMapping" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PostImage" EntityType="Self.PostImage" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Pvc" EntityType="Self.Pvc" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PvcAdharDocument" EntityType="Self.PvcAdharDocument" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SearchYourNeed" EntityType="Self.SearchYourNeed" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SearchYourNeedLink" EntityType="Self.SearchYourNeedLink" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SliderConfig" EntityType="Self.SliderConfig" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="StatusCondition" EntityType="Self.StatusCondition" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserRegistration" EntityType="Self.UserRegistration" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="VisitorCateogry" EntityType="Self.VisitorCateogry" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="webpages_Membership" EntityType="Self.webpages_Membership" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="webpages_OAuthMembership" EntityType="Self.webpages_OAuthMembership" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="webpages_Roles" EntityType="Self.webpages_Roles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="webpages_UsersInRoles" EntityType="Self.webpages_UsersInRoles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Search" EntityType="Self.Search" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+[Search].[Id] AS [Id], 
+[Search].[ContentId] AS [ContentId], 
+[Search].[Title] AS [Title], 
+[Search].[SearchContent] AS [SearchContent], 
+[Search].[SearchType] AS [SearchType]
+FROM [dbo].[Search] AS [Search]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK__Cateogry__Parent__4E88ABD4" Association="Self.FK__Cateogry__Parent__4E88ABD4">
+      <End Role="Cateogry" EntitySet="Cateogry" />
+      <End Role="Cateogry1" EntitySet="Cateogry" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Cateogry__Status__4F7CD00D" Association="Self.FK__Cateogry__Status__4F7CD00D">
+      <End Role="StatusCondition" EntitySet="StatusCondition" />
+      <End Role="Cateogry" EntitySet="Cateogry" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Enquiry__Status__5070F446" Association="Self.FK__Enquiry__Status__5070F446">
+      <End Role="StatusCondition" EntitySet="StatusCondition" />
+      <End Role="Enquiry" EntitySet="Enquiry" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Memory__UserId__5165187F" Association="Self.FK__Memory__UserId__5165187F">
+      <End Role="UserRegistration" EntitySet="UserRegistration" />
+      <End Role="Memory" EntitySet="Memory" />
+    </AssociationSet>
+    <AssociationSet Name="FK__MemoryPic__Memor__52593CB8" Association="Self.FK__MemoryPic__Memor__52593CB8">
+      <End Role="Memory" EntitySet="Memory" />
+      <End Role="MemoryPicture" EntitySet="MemoryPicture" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Otp__UserId__160F4887" Association="Self.FK__Otp__UserId__160F4887">
+      <End Role="UserRegistration" EntitySet="UserRegistration" />
+      <End Role="Otp" EntitySet="Otp" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Post__Status__534D60F1" Association="Self.FK__Post__Status__534D60F1">
+      <End Role="StatusCondition" EntitySet="StatusCondition" />
+      <End Role="Post" EntitySet="Post" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Post__UserId__5441852A" Association="Self.FK__Post__UserId__5441852A">
+      <End Role="UserRegistration" EntitySet="UserRegistration" />
+      <End Role="Post" EntitySet="Post" />
+    </AssociationSet>
+    <AssociationSet Name="FK__PostCateo__Cateo__5535A963" Association="Self.FK__PostCateo__Cateo__5535A963">
+      <End Role="Cateogry" EntitySet="Cateogry" />
+      <End Role="PostCateogryMapping" EntitySet="PostCateogryMapping" />
+    </AssociationSet>
+    <AssociationSet Name="FK__PostCateo__PostI__5629CD9C" Association="Self.FK__PostCateo__PostI__5629CD9C">
+      <End Role="Post" EntitySet="Post" />
+      <End Role="PostCateogryMapping" EntitySet="PostCateogryMapping" />
+    </AssociationSet>
+    <AssociationSet Name="FK__PostImage__PostI__571DF1D5" Association="Self.FK__PostImage__PostI__571DF1D5">
+      <End Role="Post" EntitySet="Post" />
+      <End Role="PostImage" EntitySet="PostImage" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Pvc__UserId__5812160E" Association="Self.FK__Pvc__UserId__5812160E">
+      <End Role="UserRegistration" EntitySet="UserRegistration" />
+      <End Role="Pvc" EntitySet="Pvc" />
+    </AssociationSet>
+    <AssociationSet Name="FK__PvcAdharD__PvcId__59063A47" Association="Self.FK__PvcAdharD__PvcId__59063A47">
+      <End Role="Pvc" EntitySet="Pvc" />
+      <End Role="PvcAdharDocument" EntitySet="PvcAdharDocument" />
+    </AssociationSet>
+    <AssociationSet Name="FK__SearchYou__LinkI__59FA5E80" Association="Self.FK__SearchYou__LinkI__59FA5E80">
+      <End Role="SearchYourNeedLink" EntitySet="SearchYourNeedLink" />
+      <End Role="SearchYourNeed" EntitySet="SearchYourNeed" />
+    </AssociationSet>
+    <AssociationSet Name="FK__SearchYou__UserI__5AEE82B9" Association="Self.FK__SearchYou__UserI__5AEE82B9">
+      <End Role="UserRegistration" EntitySet="UserRegistration" />
+      <End Role="SearchYourNeed" EntitySet="SearchYourNeed" />
+    </AssociationSet>
+    <AssociationSet Name="FK__UserRegis__Statu__5BE2A6F2" Association="Self.FK__UserRegis__Statu__5BE2A6F2">
+      <End Role="StatusCondition" EntitySet="StatusCondition" />
+      <End Role="UserRegistration" EntitySet="UserRegistration" />
+    </AssociationSet>
+    <AssociationSet Name="FK__VisitorCa__Cateo__5CD6CB2B" Association="Self.FK__VisitorCa__Cateo__5CD6CB2B">
+      <End Role="Cateogry" EntitySet="Cateogry" />
+      <End Role="VisitorCateogry" EntitySet="VisitorCateogry" />
+    </AssociationSet>
+    <AssociationSet Name="FK__VisitorCa__Visit__5DCAEF64" Association="Self.FK__VisitorCa__Visit__5DCAEF64">
+      <End Role="UserRegistration" EntitySet="UserRegistration" />
+      <End Role="VisitorCateogry" EntitySet="VisitorCateogry" />
+    </AssociationSet>
+    <AssociationSet Name="fk_RoleId" Association="Self.fk_RoleId">
+      <End Role="webpages_Roles" EntitySet="webpages_Roles" />
+      <End Role="webpages_UsersInRoles" EntitySet="webpages_UsersInRoles" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

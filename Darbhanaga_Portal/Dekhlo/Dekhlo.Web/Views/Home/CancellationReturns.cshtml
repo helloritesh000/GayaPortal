@@ -1,0 +1,14 @@
+﻿@model Dekhlo.Web.Models.PageContent
+@{
+    ViewBag.Title = "CancellationReturns";
+    Layout = "~/Views/Shared/LayoutResponsive.cshtml";
+}
+
+<h2>Cancellation Returns</h2>
+@if (Model != null && !String.IsNullOrEmpty(Model.PageText))
+{
+    @Html.Raw(Model.PageText)
+}
+
+
+

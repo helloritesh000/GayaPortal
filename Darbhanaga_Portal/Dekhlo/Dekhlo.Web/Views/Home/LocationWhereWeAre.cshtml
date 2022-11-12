@@ -1,0 +1,11 @@
+﻿@model Dekhlo.Web.Models.PageContent
+@{
+    ViewBag.Title = "LocationWhereWeAre";
+    Layout = "~/Views/Shared/LayoutResponsive.cshtml";
+}
+
+<h2>Where We Are</h2>
+@if (Model != null && !String.IsNullOrEmpty(Model.PageText))
+{
+    @Html.Raw(Model.PageText)
+}

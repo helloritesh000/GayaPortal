@@ -1,0 +1,7 @@
+E:\Projects\TFSOnline_Sumit\Darbhanaga_Portal\Dekhlo\Dekhlo.Bal\bin\Debug\Dekhlo.Bal.dll
+E:\Projects\TFSOnline_Sumit\Darbhanaga_Portal\Dekhlo\Dekhlo.Bal\bin\Debug\Dekhlo.Bal.pdb
+E:\Projects\TFSOnline_Sumit\Darbhanaga_Portal\Dekhlo\Dekhlo.Bal\bin\Debug\Dekhlo.Entity.dll
+E:\Projects\TFSOnline_Sumit\Darbhanaga_Portal\Dekhlo\Dekhlo.Bal\bin\Debug\Dekhlo.Entity.pdb
+E:\Projects\TFSOnline_Sumit\Darbhanaga_Portal\Dekhlo\Dekhlo.Bal\obj\Debug\Dekhlo.Bal.csprojResolveAssemblyReference.cache
+E:\Projects\TFSOnline_Sumit\Darbhanaga_Portal\Dekhlo\Dekhlo.Bal\obj\Debug\Dekhlo.Bal.dll
+E:\Projects\TFSOnline_Sumit\Darbhanaga_Portal\Dekhlo\Dekhlo.Bal\obj\Debug\Dekhlo.Bal.pdb

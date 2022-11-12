@@ -1,0 +1,40 @@
+﻿@using Dekhlo.Web.Models
+@if (Request.IsAuthenticated)
+{
+    PORTALEntitiy dbContext = new PORTALEntitiy();
+    UserRegistration userRegdLoggedIn = dbContext.UserRegistrations.Where(m => m.UserName == User.Identity.Name).FirstOrDefault();
+    if (userRegdLoggedIn != null)
+    {
+        Session["loggedInUserId"] = userRegdLoggedIn.Id;
+    }
+    <text>
+    <span style="color: #D62C04;">Hello, @Html.ActionLink((userRegdLoggedIn != null && !String.IsNullOrEmpty(userRegdLoggedIn.FirstName) ? userRegdLoggedIn.FirstName : User.Identity.Name), "Manage", "Account", routeValues: null, htmlAttributes: new { @class = "username", title = "Manage", @style = "color: #D62C04;" })&nbsp;&nbsp;&nbsp;&nbsp;</span>
+    </text>
+}
+
+<a class="btn btn-social-icon btn-google" href="https://plus.google.com/u/0/112114572218095660550"  title="Follow Us On Google">
+    <span class="fa fa-google-plus"></span>
+</a>
+<a class="btn btn-social-icon btn-facebook" href="https://www.facebook.com/darbhangacitydekhlo/"  title="Follow Us On Facebook">
+    <span class="fa fa-facebook"></span>
+</a>
+<a class="btn btn-social-icon btn-twitter" href="https://twitter.com/DarbhangaCity"  title="Follow Us On Twitter">
+    <span class="fa fa-twitter"></span>
+</a>
+
+@if (Request.IsAuthenticated)
+{
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @style="display:inline;" }))
+    {
+        @Html.AntiForgeryToken()
+        <a class="btn btn-social-icon btn-register" href="javascript:document.getElementById('logoutForm').submit()" title="Logoff">
+            <span class="fa fa-sign-out"></span>
+        </a>
+    }
+}
+else
+{
+    <a class="btn btn-social-icon btn-login" href="@Url.Action("Login", "Account")" id = "loginLink" title="Login/Register">
+        <span class="fa fa-sign-in"></span>
+    </a>
+}

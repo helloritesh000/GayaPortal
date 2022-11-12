@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="99781497-56f8-4aca-8d29-e5487a7dcbfd" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://otp.darbhangacity.com/SmsGateway.svc?wsdl" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="SmsGateway.xsd" MetadataType="Schema" ID="247671a2-f892-4eec-a5e9-b9e21a218545" SourceId="1" SourceUrl="http://otp.darbhangacity.com/SmsGateway.svc?xsd=xsd0" />
+    <MetadataFile FileName="SmsGateway1.xsd" MetadataType="Schema" ID="d9eb5401-de8d-4a4a-aea4-94787843b613" SourceId="1" SourceUrl="http://otp.darbhangacity.com/SmsGateway.svc?xsd=xsd1" />
+    <MetadataFile FileName="SmsGateway.wsdl" MetadataType="Wsdl" ID="facc496c-52ab-449d-8486-c9029584cae1" SourceId="1" SourceUrl="http://otp.darbhangacity.com/SmsGateway.svc?wsdl" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

@@ -1,0 +1,31 @@
+﻿@using Dekhlo.Web.Models;
+
+@{
+    PORTALEntitiy db = new PORTALEntitiy();
+    Random r = new Random();
+    List<Post> postsTemp = db.Posts.Include("PostImages").Where(m => m.StatusCondition.StatusName == StatusEnum.Published).ToList();
+
+    List<Post> posts = postsTemp
+     .OrderBy(h => r.Next()).Take(50).ToList();
+}
+@if (posts != null && posts.Count > 0)
+{
+    <section class="slider col-md-12">
+        <div class="flexslider" style="width:100%">
+            <ul class="slides">
+                @foreach (var item in posts)
+                {
+                    @*<li style="width:100px; height:94px;">
+                            <span><img src="@((item.PostImages != null && item.PostImages.Count > 0 && item.PostImages.FirstOrDefault() != null && !String.IsNullOrEmpty(item.PostImages.FirstOrDefault().ImageUrl)) ? item.PostImages.FirstOrDefault().ImageUrl : "")"  style="width:58px; height:56px; display:block;"/>
+                            @Html.ActionLink(item.PostTitle, "SinglePost", "Home", new { postid=item.Id, title=item.PostTitle.ToSeoUrl() }, null)</span>
+                            <p><strong>@Html.ActionLink(item.PostTitle, "SinglePost", "Home", new { postid=item.Id, title=item.PostTitle.ToSeoUrl() }, null)</strong></p>
+                        </li>*@
+                    <li>
+                        <img src='@((item.PostImages != null && item.PostImages.Count > 0 && item.PostImages.FirstOrDefault() != null && !String.IsNullOrEmpty(item.PostImages.FirstOrDefault().ImageUrl)) ? Url.Content(item.PostImages.FirstOrDefault().ImageUrl) : Url.Content("~/Images/Noimage.png"))' class="img img-responsive"  /> @*item.PostImages.FirstOrDefault().ImageUrl*@
+                        <p class="flex-caption" title="@item.PostTitle">@Html.ActionLink(item.PostTitle, "SinglePost", "Home", new { id = item.Id, title = item.PostTitle.ToSeoUrl() }, null)</p>
+                    </li>
+                }
+            </ul>
+        </div>
+    </section>
+}

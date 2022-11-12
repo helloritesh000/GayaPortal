@@ -1,0 +1,76 @@
+﻿@model Dekhlo.Web.Models.VisitorCateogry
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>VisitorCateogry</legend>
+
+        @Html.HiddenFor(model => model.Id)
+        @Html.HiddenFor(model => model.CreatedOn)
+        @Html.HiddenFor(model => model.CreatedBy)
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.VisitorId, "UserRegistration")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("VisitorId", String.Empty)
+            @Html.ValidationMessageFor(model => model.VisitorId)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.CateogryId, "Cateogry")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("CateogryId", String.Empty)
+            @Html.ValidationMessageFor(model => model.CateogryId)
+        </div>
+
+        @*<div class="editor-label">
+            @Html.LabelFor(model => model.CreatedOn)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.CreatedOn)
+            @Html.ValidationMessageFor(model => model.CreatedOn)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.CreatedBy)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.CreatedBy)
+            @Html.ValidationMessageFor(model => model.CreatedBy)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.UpdatedOn)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.UpdatedOn)
+            @Html.ValidationMessageFor(model => model.UpdatedOn)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.UpdateBy)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.UpdateBy)
+            @Html.ValidationMessageFor(model => model.UpdateBy)
+        </div>*@
+
+        <p>
+            <input type="submit" class="btn btn-primary" value="Save" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+

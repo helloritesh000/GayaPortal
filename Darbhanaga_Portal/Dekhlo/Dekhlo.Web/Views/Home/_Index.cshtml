@@ -1,0 +1,44 @@
+﻿@model Dekhlo.Web.Models.Post
+@using Dekhlo.Web.Models;
+
+@{
+    var item = Model;
+}
+@if (item != null)
+{
+    <div class="col-md-12 col-lg-12 col-sm-12 divBlockMain">
+        <div class="row">
+            <div class="col-md-12 col-xs-12 col-sm-12 divBlockInner">
+                <div class="row">
+                    <div class="col-md-12 col-xs-12 col-sm-12 divBlockImage">
+                        @if (Model.PostImages != null && Model.PostImages.Count > 0)
+                        {
+                            PORTALEntitiy db = new PORTALEntitiy();
+                            Random r = new Random();
+                            List<PostImage> postImageTemp = Model.PostImages.ToList();// db.PostImages.Where(m => !String.IsNullOrEmpty(m.ImageUrl)).ToList();
+                            List<PostImage> postImage = postImageTemp.OrderBy(h => r.Next()).Take(1).ToList();
+                            if (postImage != null && postImage.FirstOrDefault() != null && !String.IsNullOrEmpty(postImage.FirstOrDefault().ImageUrl))
+                            {
+                            <a href="@postImage.FirstOrDefault().ImageUrl">
+                                <img src="@postImage.FirstOrDefault().ImageUrl" class="img-responsive" alt="Responsive image">
+                            </a>
+                            }
+                        }
+                    </div>
+                    <div class="col-md-12 col-xs-12 col-sm-12 fontCourgetteCursive">
+                        @Html.HiddenFor(model => item.Id)
+                        <h2>@Html.ActionLink(item.PostTitle, "SinglePost", "Home", new { id = item.Id, title=item.PostTitle.ToSeoUrl() }, null)</h2>
+                    </div>
+                    <div class="col-md-12 col-xs-12 col-sm-12 fontKarlaSerif" style="height: 100px; overflow: hidden;">
+                        <p>
+                            @Html.Raw(item.PostContent)
+                        </p>
+                    </div>
+                    <div class="col-md-12 col-xs-12 col-sm-12 divBlockFooter fontKarlaSerif">
+                        @Html.ActionLink("Read More...", "SinglePost", "Home", new { id = item.Id, title=item.PostTitle.ToSeoUrl() }, null)
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}

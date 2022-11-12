@@ -1,0 +1,83 @@
+﻿@using Dekhlo.Web.Models
+
+@{
+    PORTALEntitiy db = new PORTALEntitiy();
+    long loggedInUserId = Convert.ToInt64(Session["loggedInUserId"]);
+    if (loggedInUserId > 0)
+    {
+        List<Pvc> pvcs = db.Pvcs.Include("UserRegistration").Include("PvcAdharDocuments").Where(m => m.UserId == loggedInUserId).ToList();
+        Pvc pvc = new Pvc();
+    
+    <table class="table table-hover" id="tblPvcAdded">
+        <tr>
+            @*<th>
+            @Html.DisplayNameFor(model => model.UserRegistration.FirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UserRegistration.LastName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UserRegistration.MobileNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UserRegistration.Address)
+        </th>*@
+            <th>
+                @Html.DisplayNameFor(model => pvc.NumberofCopies)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => pvc.PinCode)
+            </th>
+            <th>
+                @Html.Display("Document")
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => pvc.CreatedOn)
+            </th>
+            <th></th>
+        </tr>
+
+        @if (pvcs != null && pvcs.Count() > 0)
+        {
+            foreach (var item in pvcs)
+            {
+            <tr>
+                @*<td>
+                @Html.DisplayFor(model => item.UserRegistration.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(model => item.UserRegistration.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(model => item.UserRegistration.MobileNo)
+            </td>
+            <td>
+                @Html.DisplayFor(model => item.UserRegistration.Address)
+            </td>*@
+                <td>
+                    @Html.DisplayFor(model => item.NumberofCopies)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => item.PinCode)
+                </td>
+                <td>
+                    @if (@item.PvcAdharDocuments.FirstOrDefault() != null)
+                    {
+                        <img src="@item.PvcAdharDocuments.FirstOrDefault().DocumentUrl" alt="Pvc Image" class="img img-responsive" />
+                    }
+                    else
+                    {
+                        <img src="#" alt="Pvc Image" class="img img-responsive" />
+                    }
+                </td>
+                <td>
+                    @Html.DisplayFor(model => item.CreatedOn)
+                </td>
+                <td></td>
+            </tr>
+            }
+        }
+    </table>
+    }
+    
+}

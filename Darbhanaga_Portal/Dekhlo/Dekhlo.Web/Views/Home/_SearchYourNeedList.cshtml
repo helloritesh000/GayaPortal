@@ -1,0 +1,139 @@
+﻿@using Dekhlo.Web.Models
+@{
+    PORTALEntitiy db = new PORTALEntitiy();
+    List<SearchYourNeed> lsSearchYourNeed = null;
+    SearchYourNeedLink searchYourNeedLink = null;
+    UserRegistration modeluser = new UserRegistration();
+
+    string type = (Url.RequestContext.RouteData.Values["type"] != null) ? Convert.ToString(Url.RequestContext.RouteData.Values["type"]) : "";
+
+    if (!string.IsNullOrEmpty(type))
+    {
+        searchYourNeedLink = db.SearchYourNeedLinks.FirstOrDefault(m => m.LinkType == type);
+        if (searchYourNeedLink != null && searchYourNeedLink.Id > 0)
+        {
+            lsSearchYourNeed = db.SearchYourNeeds.Where(m => m.LinkId == searchYourNeedLink.Id).Select(m => m).ToList();
+
+            //lsuserregistration = db.UserRegistrations.Include("SearchYourNeedUserTypes")
+            //.Where(m => m.SearchYourNeedUserTypes.Where(n => n.UserType == type).Count() > 0).ToList();
+        }
+        else
+        {
+            lsSearchYourNeed = db.SearchYourNeeds.Select(m => m).ToList();
+
+        }
+    }
+    else
+    {
+        lsSearchYourNeed = db.SearchYourNeeds.Select(m => m).ToList();
+
+    }
+    
+}
+
+<div class="table-responsive">
+    <table class="table table-hover">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => modeluser.ProfilePic)
+            </th>
+            <th>
+                @Html.DisplayName("Full Name")
+            </th>
+
+
+            <th>
+                @Html.DisplayNameFor(model => modeluser.Address)
+            </th>
+            @* <th>
+                @Html.DisplayNameFor(model => modeluser.EmailId)
+            </th>*@
+            <th>
+                @Html.DisplayNameFor(model => modeluser.MobileNo)
+            </th>
+            @* <th>
+                @Html.DisplayNameFor(model => modeluser.UserName)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => modeluser.Status)
+            </th>*@
+            <th>
+                @Html.DisplayNameFor(model => modeluser.CreatedOn)
+            </th>
+
+            @* <th>
+                @Html.DisplayNameFor(model => modeluser.UpdatedOn)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => modeluser.PinCode)
+            </th>*@
+
+            <th></th>
+        </tr>
+        @if (lsSearchYourNeed != null && lsSearchYourNeed.Count > 0)
+        {
+            foreach (var item in lsSearchYourNeed)
+            {
+            <tr>
+                <td>
+                    @{
+                var base64 = Convert.ToBase64String(item.ProfilePic);
+                var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+                    }
+                    <img src="@imgSrc" style="width:40px;height:40px;" />
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FirstName) @Html.DisplayFor(modelItem => item.LastName)
+                </td>
+
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Address)
+                </td>
+                @*<td>
+                    @Html.DisplayFor(modelItem => item.EmailId)
+                </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.MobileNo)
+                </td>
+                @*<td>
+                    @Html.DisplayFor(modelItem => item.UserName)
+                </td>*@
+
+                @*                <td>
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.CreatedOn)
+                </td>
+
+                @*<td>
+                    @Html.DisplayFor(modelItem => item.UpdatedOn)
+                </td>*@
+
+                @* <td>
+                    @Html.DisplayFor(modelItem => item.PinCode)
+                </td>*@
+                <td>
+                    @if (Session["LoggedInUserId"] != null && (User.IsInRole("ADMINISTRATOR") || (long)Session["LoggedInUserId"] == item.UserId))
+                    {
+                        @Html.ActionLink("Edit", "SearchYourNeedEdit", new { id = item.Id, title=item.FirstName.ToSeoUrl(), type = searchYourNeedLink.LinkType  }) 
+                        if (Session["LoggedInUserId"] != null && (User.IsInRole("ADMINISTRATOR")))
+                        {
+                            <text>|</text>
+                            using (Html.BeginForm("DeleteSearchYourNeed", "Home", new { id = item.Id, type = searchYourNeedLink.LinkType }, FormMethod.Post, new { @style = "display:inline;" }))
+                            {
+                                <input type="submit" class="btn btn-link" value="Delete" onclick="javascript: return confirm('Are you sure you want to delete?');" style="display: inline; padding: 0px;" />
+                            }
+                        }
+                    }
+                </td>
+            </tr>
+            }
+        }
+
+
+    </table>
+</div>

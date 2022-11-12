@@ -1,0 +1,71 @@
+﻿@model Dekhlo.Web.Models.PageContent
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>PageContent</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PageType)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.PageType, (IEnumerable<SelectListItem>)ViewBag.PageType)
+            @Html.ValidationMessageFor(model => model.PageType)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PageText)
+        </div>
+        <div class="editor-field">
+            @Html.TextAreaFor(model => model.PageText)
+            @Html.ValidationMessageFor(model => model.PageText)
+        </div>
+
+        @*<div class="editor-label">
+            @Html.LabelFor(model => model.CreatedOn)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.CreatedOn)
+            @Html.ValidationMessageFor(model => model.CreatedOn)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.CreatedBy)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.CreatedBy)
+            @Html.ValidationMessageFor(model => model.CreatedBy)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.UpdatedOn)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.UpdatedOn)
+            @Html.ValidationMessageFor(model => model.UpdatedOn)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.UpdateBy)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.UpdateBy)
+            @Html.ValidationMessageFor(model => model.UpdateBy)
+        </div>*@
+
+        <p>
+            <input type="submit" class="btn btn-primary" value="Create" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

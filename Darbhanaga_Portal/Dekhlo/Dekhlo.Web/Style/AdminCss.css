@@ -1,0 +1,131 @@
+﻿.editor-field input[type=text], .editor-field input[type=password], .editor-field select, .editor-field input[type=email], .editor-field textarea {
+    display: block;
+    width: 50%;
+    height: 32px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+}
+
+.editor-field textarea {
+    display: block;
+    width: 50%;
+    height: 200px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+}
+
+.editor-field select, .editor-field input[type=datetime], .editor-field input[type=tel], .editor-field input[type=number] {
+    display: block;
+    width: 30%;
+    height: 32px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+}
+
+p input[type=submit] {
+    margin-top: 15px;
+}
+
+.navbar .navbar-right ul li a {
+    padding: 10px 15px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    color: #f2f2f2;
+}
+.navbar-inverse .navbar-nav>li>a {
+    color: #f2f2f2;
+}
+.navbar .navbar-right form {
+    padding: 15px 10px 20px 0px ;
+    display:block;
+    color: #f2f2f2;
+}
+.navbar .navbar-right form a {
+    color: #f2f2f2;
+}
+
+.required {
+    font-size:150%;
+    color:red;
+}
+
+.divAddPostImage {
+    font-size: 1.6em;
+    background-color: #f2f2f2;
+    margin: 10px;
+    text-align: center;
+    border: 1px solid #d2d2d2;
+    height: 70px;
+    padding-left: 0px;
+    padding-right: 0px;
+}
+.divAddPostImage img {
+    height: 100%;
+    width: 100%;
+}
+.divAddPostImage span.spanPlus {
+    /* padding: 36px 20px; */
+    color: #337ab7;
+    position: absolute;
+    left: 40%;
+    top: 40%;
+    display:none;
+    /* margin-left: auto; */
+    /* margin-right: auto; */
+}
+
+/*.divAddPostImage:hover .spanPlus {
+    color: #337ab7;  
+}*/
+
+.divAddPostImage span.spanRemove {
+    /* padding: 36px 20px; */
+    color: #FFFFFF;
+    position: absolute;
+    right: 1%;
+    top: 0%;
+    display:none;
+    /* margin-left: auto; */
+    /* margin-right: auto; */
+}
+
+/*.divAddPostImage span.spanRemove {
+    display:none;    
+}
+
+.divAddPostImage:hover span.spanRemove {
+    display:inline;    
+}*/

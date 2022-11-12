@@ -1,0 +1,67 @@
+﻿@model Dekhlo.Web.Models.OtpMessage
+
+@{
+    ViewBag.Title = "GetOtp";
+    Layout = "~/Views/Shared/LayoutResponsive.cshtml";
+}
+
+<div class="col-md-12" style="background-color: #fff;">
+    <div class="col-md-offset-4 col-md-5">
+        @if (ViewBag.IsOtpsent == null || ViewBag.IsOtpsent == false)
+        {
+            <h2>Get OTP</h2>
+        }
+        else
+        {
+            <h2>Enter OTP</h2>
+        }
+
+        @using (Html.BeginForm("GetOtp", "Account", null, FormMethod.Post, null))
+        {
+            @Html.ValidationSummary(true)
+            @Html.AntiForgeryToken()
+
+            <fieldset>
+                @(!String.IsNullOrEmpty(ViewBag.Message) ? Html.Raw(ViewBag.Message + "<br/><br/>") : "")
+                @if (ViewBag.IsOtpsent == null || ViewBag.IsOtpsent == false)
+                {
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.MobileNumber)
+                    </div>
+                    <div class="editor-field">
+                        <span>+91</span>@Html.TextBoxFor(model => model.MobileNumber, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.MobileNumber)
+                    </div>
+                }
+                else
+                {
+                    @Html.HiddenFor(model => model.MobileNumber)
+                    if (!String.IsNullOrEmpty(ViewBag.PasswordEntered))
+                    {
+                        @Html.Hidden("hdnTokenKey", (string)ViewBag.PasswordEntered)
+                    }
+                    <div class="editor-label">
+                        @Html.LabelFor(model => model.OtpVerificationCode)
+                    </div>
+                    <div class="editor-field">
+                        @Html.TextBoxFor(model => model.OtpVerificationCode, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.OtpVerificationCode)
+                    </div>
+                }
+                <br />
+                <div class="form-group">
+                    <div class="col-md-12">
+                        <div class="row">
+
+                            <input type="submit" name="singlebutton" class="btn btn-primary" value="Get OTP" />
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+        }
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

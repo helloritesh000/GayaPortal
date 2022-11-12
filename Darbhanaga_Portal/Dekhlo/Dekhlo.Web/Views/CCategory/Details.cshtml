@@ -1,0 +1,72 @@
+﻿@model Dekhlo.Web.Models.Cateogry
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/LayoutMain.cshtml";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Cateogry</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.CateogryName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CateogryName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.IsVisitorCateogry)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.IsVisitorCateogry)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.StatusCondition.StatusName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.StatusCondition.StatusName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.CreatedOn)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CreatedOn)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.CreatedBy)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CreatedBy)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.UpdatedOn)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.UpdatedOn)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.UpdateBy)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.UpdateBy)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Cateogry2.CateogryName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Cateogry2.CateogryName)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

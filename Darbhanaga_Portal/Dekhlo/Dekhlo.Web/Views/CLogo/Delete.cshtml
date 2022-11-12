@@ -1,0 +1,35 @@
+﻿@model Dekhlo.Web.Models.Logo
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<fieldset>
+    <legend>Logo</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.TagContent)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.TagContent)
+    </div>
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.TagContent)
+    </div>
+    <div class="display-field">
+        @{
+             var base64 = Convert.ToBase64String(Model.ImageContent);
+             var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+        }
+        <img src="@imgSrc" />
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    <p>
+        <input type="submit" class="btn btn-primary" value="Delete" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}

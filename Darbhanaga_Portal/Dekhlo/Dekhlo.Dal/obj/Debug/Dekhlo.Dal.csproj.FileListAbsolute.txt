@@ -1,0 +1,12 @@
+E:\Projects\TFSOnline_Sumit\Darbhanaga_Portal\Dekhlo\Dekhlo.Dal\bin\Debug\Dekhlo.Dal.dll.config
+E:\Projects\TFSOnline_Sumit\Darbhanaga_Portal\Dekhlo\Dekhlo.Dal\bin\Debug\Dekhlo.Dal.dll
+E:\Projects\TFSOnline_Sumit\Darbhanaga_Portal\Dekhlo\Dekhlo.Dal\bin\Debug\Dekhlo.Dal.pdb
+E:\Projects\TFSOnline_Sumit\Darbhanaga_Portal\Dekhlo\Dekhlo.Dal\bin\Debug\Dekhlo.Entity.dll
+E:\Projects\TFSOnline_Sumit\Darbhanaga_Portal\Dekhlo\Dekhlo.Dal\bin\Debug\EntityFramework.dll
+E:\Projects\TFSOnline_Sumit\Darbhanaga_Portal\Dekhlo\Dekhlo.Dal\bin\Debug\EntityFramework.SqlServer.dll
+E:\Projects\TFSOnline_Sumit\Darbhanaga_Portal\Dekhlo\Dekhlo.Dal\bin\Debug\Dekhlo.Entity.pdb
+E:\Projects\TFSOnline_Sumit\Darbhanaga_Portal\Dekhlo\Dekhlo.Dal\bin\Debug\EntityFramework.xml
+E:\Projects\TFSOnline_Sumit\Darbhanaga_Portal\Dekhlo\Dekhlo.Dal\bin\Debug\EntityFramework.SqlServer.xml
+E:\Projects\TFSOnline_Sumit\Darbhanaga_Portal\Dekhlo\Dekhlo.Dal\obj\Debug\Dekhlo.Dal.csprojResolveAssemblyReference.cache
+E:\Projects\TFSOnline_Sumit\Darbhanaga_Portal\Dekhlo\Dekhlo.Dal\obj\Debug\Dekhlo.Dal.dll
+E:\Projects\TFSOnline_Sumit\Darbhanaga_Portal\Dekhlo\Dekhlo.Dal\obj\Debug\Dekhlo.Dal.pdb

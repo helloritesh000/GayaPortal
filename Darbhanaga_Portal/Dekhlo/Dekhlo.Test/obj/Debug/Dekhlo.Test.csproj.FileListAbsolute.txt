@@ -1,0 +1,5 @@
+E:\Projects\TFSOnline_Sumit\Darbhanaga_Portal\Dekhlo\Dekhlo.Test\bin\Debug\Dekhlo.Test.exe.config
+E:\Projects\TFSOnline_Sumit\Darbhanaga_Portal\Dekhlo\Dekhlo.Test\bin\Debug\Dekhlo.Test.exe
+E:\Projects\TFSOnline_Sumit\Darbhanaga_Portal\Dekhlo\Dekhlo.Test\bin\Debug\Dekhlo.Test.pdb
+E:\Projects\TFSOnline_Sumit\Darbhanaga_Portal\Dekhlo\Dekhlo.Test\obj\Debug\Dekhlo.Test.exe
+E:\Projects\TFSOnline_Sumit\Darbhanaga_Portal\Dekhlo\Dekhlo.Test\obj\Debug\Dekhlo.Test.pdb

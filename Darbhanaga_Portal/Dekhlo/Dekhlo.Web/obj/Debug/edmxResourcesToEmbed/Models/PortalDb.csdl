@@ -1,0 +1,669 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="PORTALModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="PORTALEntitiy" p1:LazyLoadingEnabled="true">
+    <EntitySet Name="PostCateogryMappings" EntityType="PORTALModel.PostCateogryMapping" />
+    <EntitySet Name="PostImages" EntityType="PORTALModel.PostImage" />
+    <EntitySet Name="StatusConditions" EntityType="PORTALModel.StatusCondition" />
+    <EntitySet Name="VisitorCateogries" EntityType="PORTALModel.VisitorCateogry" />
+    <EntitySet Name="Cateogries" EntityType="PORTALModel.Cateogry" />
+    <AssociationSet Name="FK__Cateogry__Status__4316F928" Association="PORTALModel.FK__Cateogry__Status__4316F928">
+      <End Role="StatusCondition" EntitySet="StatusConditions" />
+      <End Role="Cateogry" EntitySet="Cateogries" />
+    </AssociationSet>
+    <AssociationSet Name="FK__PostCateo__Cateo__5070F446" Association="PORTALModel.FK__PostCateo__Cateo__5070F446">
+      <End Role="Cateogry" EntitySet="Cateogries" />
+      <End Role="PostCateogryMapping" EntitySet="PostCateogryMappings" />
+    </AssociationSet>
+    <AssociationSet Name="FK__VisitorCa__Cateo__5812160E" Association="PORTALModel.FK__VisitorCa__Cateo__5812160E">
+      <End Role="Cateogry" EntitySet="Cateogries" />
+      <End Role="VisitorCateogry" EntitySet="VisitorCateogries" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Cateogry__Parent__59FA5E80" Association="PORTALModel.FK__Cateogry__Parent__59FA5E80">
+      <End Role="Cateogry" EntitySet="Cateogries" />
+      <End Role="Cateogry1" EntitySet="Cateogries" />
+    </AssociationSet>
+    <EntitySet Name="SliderConfigs" EntityType="PORTALModel.SliderConfig" />
+    <EntitySet Name="PageContents" EntityType="PORTALModel.PageContent" />
+    <EntitySet Name="Logoes" EntityType="PORTALModel.Logo" />
+    <EntitySet Name="PopularSearches" EntityType="PORTALModel.PopularSearch" />
+    <EntitySet Name="UserRegistrations" EntityType="PORTALModel.UserRegistration" />
+    <EntitySet Name="webpages_Membership" EntityType="PORTALModel.webpages_Membership" />
+    <EntitySet Name="webpages_OAuthMembership" EntityType="PORTALModel.webpages_OAuthMembership" />
+    <EntitySet Name="webpages_Roles" EntityType="PORTALModel.webpages_Roles" />
+    <AssociationSet Name="FK__UserRegis__Statu__3E52440B" Association="PORTALModel.FK__UserRegis__Statu__3E52440B">
+      <End Role="StatusCondition" EntitySet="StatusConditions" />
+      <End Role="UserRegistration" EntitySet="UserRegistrations" />
+    </AssociationSet>
+    <AssociationSet Name="FK__VisitorCa__Visit__571DF1D5" Association="PORTALModel.FK__VisitorCa__Visit__571DF1D5">
+      <End Role="UserRegistration" EntitySet="UserRegistrations" />
+      <End Role="VisitorCateogry" EntitySet="VisitorCateogries" />
+    </AssociationSet>
+    <EntitySet Name="PvcAdharDocuments" EntityType="PORTALModel.PvcAdharDocument" />
+    <EntitySet Name="Pvcs" EntityType="PORTALModel.Pvc" />
+    <AssociationSet Name="FK__Pvc__UserId__7755B73D" Association="PORTALModel.FK__Pvc__UserId__7755B73D">
+      <End Role="UserRegistration" EntitySet="UserRegistrations" />
+      <End Role="Pvc" EntitySet="Pvcs" />
+    </AssociationSet>
+    <AssociationSet Name="FK__PvcAdharD__PvcId__76619304" Association="PORTALModel.FK__PvcAdharD__PvcId__76619304">
+      <End Role="Pvc" EntitySet="Pvcs" />
+      <End Role="PvcAdharDocument" EntitySet="PvcAdharDocuments" />
+    </AssociationSet>
+    <EntitySet Name="SearchYourNeeds" EntityType="PORTALModel.SearchYourNeed" />
+    <EntitySet Name="SearchYourNeedLinks" EntityType="PORTALModel.SearchYourNeedLink" />
+    <AssociationSet Name="FK__SearchYou__LinkI__27F8EE98" Association="PORTALModel.FK__SearchYou__LinkI__27F8EE98">
+      <End Role="SearchYourNeedLink" EntitySet="SearchYourNeedLinks" />
+      <End Role="SearchYourNeed" EntitySet="SearchYourNeeds" />
+    </AssociationSet>
+    <AssociationSet Name="FK__SearchYou__UserI__28ED12D1" Association="PORTALModel.FK__SearchYou__UserI__28ED12D1">
+      <End Role="UserRegistration" EntitySet="UserRegistrations" />
+      <End Role="SearchYourNeed" EntitySet="SearchYourNeeds" />
+    </AssociationSet>
+    <EntitySet Name="Memories" EntityType="PORTALModel.Memory" />
+    <EntitySet Name="MemoryPictures" EntityType="PORTALModel.MemoryPicture" />
+    <AssociationSet Name="FK__Memory__UserId__2CBDA3B5" Association="PORTALModel.FK__Memory__UserId__2CBDA3B5">
+      <End Role="UserRegistration" EntitySet="UserRegistrations" />
+      <End Role="Memory" EntitySet="Memories" />
+    </AssociationSet>
+    <AssociationSet Name="FK__MemoryPic__Memor__2F9A1060" Association="PORTALModel.FK__MemoryPic__Memor__2F9A1060">
+      <End Role="Memory" EntitySet="Memories" />
+      <End Role="MemoryPicture" EntitySet="MemoryPictures" />
+    </AssociationSet>
+    <EntitySet Name="Posts" EntityType="PORTALModel.Post" />
+    <AssociationSet Name="FK__Post__Status__4BAC3F29" Association="PORTALModel.FK__Post__Status__4BAC3F29">
+      <End Role="StatusCondition" EntitySet="StatusConditions" />
+      <End Role="Post" EntitySet="Posts" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Post__UserId__40C49C62" Association="PORTALModel.FK__Post__UserId__40C49C62">
+      <End Role="UserRegistration" EntitySet="UserRegistrations" />
+      <End Role="Post" EntitySet="Posts" />
+    </AssociationSet>
+    <AssociationSet Name="FK__PostCateo__PostI__4F7CD00D" Association="PORTALModel.FK__PostCateo__PostI__4F7CD00D">
+      <End Role="Post" EntitySet="Posts" />
+      <End Role="PostCateogryMapping" EntitySet="PostCateogryMappings" />
+    </AssociationSet>
+    <AssociationSet Name="FK__PostImage__PostI__5441852A" Association="PORTALModel.FK__PostImage__PostI__5441852A">
+      <End Role="Post" EntitySet="Posts" />
+      <End Role="PostImage" EntitySet="PostImages" />
+    </AssociationSet>
+    <EntitySet Name="Enquiries" EntityType="PORTALModel.Enquiry" />
+    <AssociationSet Name="FK__Enquiry__Status__477199F1" Association="PORTALModel.FK__Enquiry__Status__477199F1">
+      <End Role="StatusCondition" EntitySet="StatusConditions" />
+      <End Role="Enquiry" EntitySet="Enquiries" />
+    </AssociationSet>
+    <EntitySet Name="webpages_UsersInRoles" EntityType="PORTALModel.webpages_UsersInRoles" />
+    <AssociationSet Name="fk_RoleId" Association="PORTALModel.fk_RoleId">
+      <End Role="webpages_Roles" EntitySet="webpages_Roles" />
+      <End Role="webpages_UsersInRoles" EntitySet="webpages_UsersInRoles" />
+    </AssociationSet>
+    <EntitySet Name="Searches" EntityType="PORTALModel.Search" />
+    <EntitySet Name="ExceptionLoggers" EntityType="PORTALModel.ExceptionLogger" />
+    <EntitySet Name="Otps" EntityType="PORTALModel.Otp" />
+    <AssociationSet Name="FK__Otp__UserId__160F4887" Association="PORTALModel.FK__Otp__UserId__160F4887">
+      <End Role="UserRegistration" EntitySet="UserRegistrations" />
+      <End Role="Otp" EntitySet="Otps" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="PostCateogryMapping">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int64" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="PostId" Type="Int64" />
+    <Property Name="CateogryId" Type="Int64" />
+    <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+    <Property Name="CreatedBy" Type="Int64" />
+    <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
+    <Property Name="UpdateBy" Type="Int64" />
+    <NavigationProperty Name="Cateogry" Relationship="PORTALModel.FK__PostCateo__Cateo__5070F446" FromRole="PostCateogryMapping" ToRole="Cateogry" />
+    <NavigationProperty Name="Post" Relationship="PORTALModel.FK__PostCateo__PostI__4F7CD00D" FromRole="PostCateogryMapping" ToRole="Post" />
+  </EntityType>
+  <EntityType Name="PostImage">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int64" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="PostId" Type="Int64" />
+    <Property Name="ImageUrl" Type="String" MaxLength="300" Unicode="false" FixedLength="false" />
+    <NavigationProperty Name="Post" Relationship="PORTALModel.FK__PostImage__PostI__5441852A" FromRole="PostImage" ToRole="Post" />
+  </EntityType>
+  <EntityType Name="StatusCondition">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="StatusName" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+    <NavigationProperty Name="Cateogries" Relationship="PORTALModel.FK__Cateogry__Status__4316F928" FromRole="StatusCondition" ToRole="Cateogry" />
+    <NavigationProperty Name="UserRegistrations" Relationship="PORTALModel.FK__UserRegis__Statu__3E52440B" FromRole="StatusCondition" ToRole="UserRegistration" />
+    <NavigationProperty Name="Posts" Relationship="PORTALModel.FK__Post__Status__4BAC3F29" FromRole="StatusCondition" ToRole="Post" />
+    <NavigationProperty Name="Enquiries" Relationship="PORTALModel.FK__Enquiry__Status__477199F1" FromRole="StatusCondition" ToRole="Enquiry" />
+  </EntityType>
+  <EntityType Name="VisitorCateogry">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int64" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="VisitorId" Type="Int64" Nullable="false" />
+    <Property Name="CateogryId" Type="Int64" Nullable="false" />
+    <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+    <Property Name="CreatedBy" Type="Int64" />
+    <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
+    <Property Name="UpdateBy" Type="Int64" />
+    <NavigationProperty Name="Cateogry" Relationship="PORTALModel.FK__VisitorCa__Cateo__5812160E" FromRole="VisitorCateogry" ToRole="Cateogry" />
+    <NavigationProperty Name="UserRegistration" Relationship="PORTALModel.FK__VisitorCa__Visit__571DF1D5" FromRole="VisitorCateogry" ToRole="UserRegistration" />
+  </EntityType>
+  <EntityType Name="Cateogry">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Type="Int64" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="CateogryName" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Type="Boolean" Name="IsVisitorCateogry" />
+    <Property Type="Int32" Name="Status" />
+    <Property Type="DateTime" Name="CreatedOn" Precision="3" />
+    <Property Type="Int64" Name="CreatedBy" />
+    <Property Type="DateTime" Name="UpdatedOn" Precision="3" />
+    <Property Type="Int64" Name="UpdateBy" />
+    <NavigationProperty Name="StatusCondition" Relationship="PORTALModel.FK__Cateogry__Status__4316F928" FromRole="Cateogry" ToRole="StatusCondition" />
+    <NavigationProperty Name="PostCateogryMappings" Relationship="PORTALModel.FK__PostCateo__Cateo__5070F446" FromRole="Cateogry" ToRole="PostCateogryMapping" />
+    <NavigationProperty Name="VisitorCateogries" Relationship="PORTALModel.FK__VisitorCa__Cateo__5812160E" FromRole="Cateogry" ToRole="VisitorCateogry" />
+    <Property Type="Int64" Name="ParentCateogry" />
+    <NavigationProperty Name="Cateogry1" Relationship="PORTALModel.FK__Cateogry__Parent__59FA5E80" FromRole="Cateogry" ToRole="Cateogry1" />
+    <NavigationProperty Name="Cateogry2" Relationship="PORTALModel.FK__Cateogry__Parent__59FA5E80" FromRole="Cateogry1" ToRole="Cateogry" />
+  </EntityType>
+  <Association Name="FK__Cateogry__Status__4316F928">
+    <End Type="PORTALModel.StatusCondition" Role="StatusCondition" Multiplicity="0..1" />
+    <End Type="PORTALModel.Cateogry" Role="Cateogry" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="StatusCondition">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Cateogry">
+        <PropertyRef Name="Status" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__PostCateo__Cateo__5070F446">
+    <End Type="PORTALModel.Cateogry" Role="Cateogry" Multiplicity="0..1" />
+    <End Type="PORTALModel.PostCateogryMapping" Role="PostCateogryMapping" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cateogry">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PostCateogryMapping">
+        <PropertyRef Name="CateogryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__VisitorCa__Cateo__5812160E">
+    <End Type="PORTALModel.Cateogry" Role="Cateogry" Multiplicity="1" />
+    <End Type="PORTALModel.VisitorCateogry" Role="VisitorCateogry" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cateogry">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="VisitorCateogry">
+        <PropertyRef Name="CateogryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Cateogry__Parent__59FA5E80">
+    <End Type="PORTALModel.Cateogry" Role="Cateogry" Multiplicity="0..1" />
+    <End Type="PORTALModel.Cateogry" Role="Cateogry1" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cateogry">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Cateogry1">
+        <PropertyRef Name="ParentCateogry" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="SliderConfig">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Type="Int64" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="Description" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="ImageUrl" MaxLength="300" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="PageContent">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="PageType" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="PageText" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="CreatedOn" Precision="3" />
+    <Property Type="Int64" Name="CreatedBy" />
+    <Property Type="DateTime" Name="UpdatedOn" Precision="3" />
+    <Property Type="Int64" Name="UpdateBy" />
+  </EntityType>
+  <EntityType Name="Logo">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Binary" Name="ImageContent" Nullable="false" MaxLength="Max" FixedLength="false" />
+    <Property Type="String" Name="TagContent" MaxLength="300" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="PopularSearch">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Type="Int64" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="SearchParameter" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Type="Int64" Name="SearchedId" />
+  </EntityType>
+  <EntityType Name="UserRegistration">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Type="Int64" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="FirstName" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="MiddleName" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="LastName" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Address" MaxLength="300" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="EmailId" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="MobileNo" MaxLength="13" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="UserName" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="Binary" Name="ProfilePic" MaxLength="Max" FixedLength="false" />
+    <Property Type="Boolean" Name="IsVisitor" />
+    <Property Type="Int32" Name="Status" />
+    <Property Type="DateTime" Name="CreatedOn" Precision="3" />
+    <Property Type="Int64" Name="CreatedBy" />
+    <Property Type="DateTime" Name="UpdatedOn" Precision="3" />
+    <Property Type="Int64" Name="UpdateBy" />
+    <Property Type="String" Name="PinCode" MaxLength="20" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="StatusCondition" Relationship="PORTALModel.FK__UserRegis__Statu__3E52440B" FromRole="UserRegistration" ToRole="StatusCondition" />
+    <NavigationProperty Name="VisitorCateogries" Relationship="PORTALModel.FK__VisitorCa__Visit__571DF1D5" FromRole="UserRegistration" ToRole="VisitorCateogry" />
+    <NavigationProperty Name="Pvcs" Relationship="PORTALModel.FK__Pvc__UserId__7755B73D" FromRole="UserRegistration" ToRole="Pvc" />
+    <NavigationProperty Name="SearchYourNeeds" Relationship="PORTALModel.FK__SearchYou__UserI__28ED12D1" FromRole="UserRegistration" ToRole="SearchYourNeed" />
+    <NavigationProperty Name="Memories" Relationship="PORTALModel.FK__Memory__UserId__2CBDA3B5" FromRole="UserRegistration" ToRole="Memory" />
+    <NavigationProperty Name="Posts" Relationship="PORTALModel.FK__Post__UserId__40C49C62" FromRole="UserRegistration" ToRole="Post" />
+    <NavigationProperty Name="Otps" Relationship="PORTALModel.FK__Otp__UserId__160F4887" FromRole="UserRegistration" ToRole="Otp" />
+  </EntityType>
+  <EntityType Name="webpages_Membership">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Type="Int32" Name="UserId" Nullable="false" />
+    <Property Type="DateTime" Name="CreateDate" Precision="3" />
+    <Property Type="String" Name="ConfirmationToken" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Type="Boolean" Name="IsConfirmed" />
+    <Property Type="DateTime" Name="LastPasswordFailureDate" Precision="3" />
+    <Property Type="Int32" Name="PasswordFailuresSinceLastSuccess" Nullable="false" />
+    <Property Type="String" Name="Password" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="PasswordChangedDate" Precision="3" />
+    <Property Type="String" Name="PasswordSalt" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="PasswordVerificationToken" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="PasswordVerificationTokenExpirationDate" Precision="3" />
+  </EntityType>
+  <EntityType Name="webpages_OAuthMembership">
+    <Key>
+      <PropertyRef Name="Provider" />
+      <PropertyRef Name="ProviderUserId" />
+    </Key>
+    <Property Type="String" Name="Provider" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="ProviderUserId" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="UserId" Nullable="false" />
+  </EntityType>
+  <EntityType Name="webpages_Roles">
+    <Key>
+      <PropertyRef Name="RoleId" />
+    </Key>
+    <Property Type="Int32" Name="RoleId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="RoleName" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="webpages_UsersInRoles" Relationship="PORTALModel.fk_RoleId" FromRole="webpages_Roles" ToRole="webpages_UsersInRoles" />
+  </EntityType>
+  <Association Name="FK__UserRegis__Statu__3E52440B">
+    <End Type="PORTALModel.StatusCondition" Role="StatusCondition" Multiplicity="0..1" />
+    <End Type="PORTALModel.UserRegistration" Role="UserRegistration" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="StatusCondition">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserRegistration">
+        <PropertyRef Name="Status" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__VisitorCa__Visit__571DF1D5">
+    <End Type="PORTALModel.UserRegistration" Role="UserRegistration" Multiplicity="1" />
+    <End Type="PORTALModel.VisitorCateogry" Role="VisitorCateogry" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserRegistration">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="VisitorCateogry">
+        <PropertyRef Name="VisitorId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="PvcAdharDocument">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Type="Int64" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="DocumentUrl" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Type="Int64" Name="PvcId" />
+    <NavigationProperty Name="Pvc" Relationship="PORTALModel.FK__PvcAdharD__PvcId__76619304" FromRole="PvcAdharDocument" ToRole="Pvc" />
+  </EntityType>
+  <EntityType Name="Pvc">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Type="Int64" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Int64" Name="UserId" Nullable="false" />
+    <Property Type="Int32" Name="NumberofCopies" Nullable="false" />
+    <Property Type="String" Name="PinCode" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="CreatedOn" Precision="3" />
+    <Property Type="Int64" Name="CreatedBy" />
+    <Property Type="DateTime" Name="UpdatedOn" Precision="3" />
+    <Property Type="Int64" Name="UpdateBy" />
+    <Property Type="Boolean" Name="IsTermAccepted" />
+    <NavigationProperty Name="UserRegistration" Relationship="PORTALModel.FK__Pvc__UserId__7755B73D" FromRole="Pvc" ToRole="UserRegistration" />
+    <NavigationProperty Name="PvcAdharDocuments" Relationship="PORTALModel.FK__PvcAdharD__PvcId__76619304" FromRole="Pvc" ToRole="PvcAdharDocument" />
+  </EntityType>
+  <Association Name="FK__Pvc__UserId__7755B73D">
+    <End Type="PORTALModel.UserRegistration" Role="UserRegistration" Multiplicity="1" />
+    <End Type="PORTALModel.Pvc" Role="Pvc" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserRegistration">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Pvc">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__PvcAdharD__PvcId__76619304">
+    <End Type="PORTALModel.Pvc" Role="Pvc" Multiplicity="0..1" />
+    <End Type="PORTALModel.PvcAdharDocument" Role="PvcAdharDocument" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pvc">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PvcAdharDocument">
+        <PropertyRef Name="PvcId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="SearchYourNeed">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Type="Int64" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Int64" Name="LinkId" Nullable="false" />
+    <Property Type="Int64" Name="UserId" Nullable="false" />
+    <Property Type="String" Name="FirstName" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="LastName" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="MobileNo" Nullable="false" MaxLength="13" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Address" MaxLength="300" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="PinCode" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Type="Binary" Name="ProfilePic" MaxLength="Max" FixedLength="false" />
+    <Property Type="Boolean" Name="Status" />
+    <Property Type="DateTime" Name="CreatedOn" Precision="3" />
+    <Property Type="Int64" Name="CreatedBy" />
+    <Property Type="DateTime" Name="UpdatedOn" Precision="3" />
+    <Property Type="Int64" Name="UpdateBy" />
+    <NavigationProperty Name="SearchYourNeedLink" Relationship="PORTALModel.FK__SearchYou__LinkI__27F8EE98" FromRole="SearchYourNeed" ToRole="SearchYourNeedLink" />
+    <NavigationProperty Name="UserRegistration" Relationship="PORTALModel.FK__SearchYou__UserI__28ED12D1" FromRole="SearchYourNeed" ToRole="UserRegistration" />
+  </EntityType>
+  <EntityType Name="SearchYourNeedLink">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Type="Int64" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="LinkType" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="LinkText" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Type="Boolean" Name="Status" Nullable="false" />
+    <Property Type="DateTime" Name="CreatedOn" Precision="3" />
+    <Property Type="Int64" Name="CreatedBy" />
+    <Property Type="DateTime" Name="UpdatedOn" Precision="3" />
+    <Property Type="Int64" Name="UpdateBy" />
+    <NavigationProperty Name="SearchYourNeeds" Relationship="PORTALModel.FK__SearchYou__LinkI__27F8EE98" FromRole="SearchYourNeedLink" ToRole="SearchYourNeed" />
+  </EntityType>
+  <Association Name="FK__SearchYou__LinkI__27F8EE98">
+    <End Type="PORTALModel.SearchYourNeedLink" Role="SearchYourNeedLink" Multiplicity="1" />
+    <End Type="PORTALModel.SearchYourNeed" Role="SearchYourNeed" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SearchYourNeedLink">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SearchYourNeed">
+        <PropertyRef Name="LinkId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__SearchYou__UserI__28ED12D1">
+    <End Type="PORTALModel.UserRegistration" Role="UserRegistration" Multiplicity="1" />
+    <End Type="PORTALModel.SearchYourNeed" Role="SearchYourNeed" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserRegistration">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SearchYourNeed">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Memory">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Type="Int64" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Int64" Name="UserId" Nullable="false" />
+    <Property Type="Binary" Name="ProfilePic" MaxLength="Max" FixedLength="false" />
+    <Property Type="String" Name="FirstName" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="LastName" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="EmailId" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="MobileNo" MaxLength="13" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="Title" MaxLength="300" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Description" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="CreatedOn" Precision="3" />
+    <Property Type="Int64" Name="CreatedBy" />
+    <Property Type="DateTime" Name="UpdatedOn" Precision="3" />
+    <Property Type="Int64" Name="UpdatedOBy" />
+    <NavigationProperty Name="UserRegistration" Relationship="PORTALModel.FK__Memory__UserId__2CBDA3B5" FromRole="Memory" ToRole="UserRegistration" />
+    <NavigationProperty Name="MemoryPictures" Relationship="PORTALModel.FK__MemoryPic__Memor__2F9A1060" FromRole="Memory" ToRole="MemoryPicture" />
+  </EntityType>
+  <EntityType Name="MemoryPicture">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Type="Int64" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Int64" Name="MemoryId" Nullable="false" />
+    <Property Type="String" Name="ImageUrl" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Memory" Relationship="PORTALModel.FK__MemoryPic__Memor__2F9A1060" FromRole="MemoryPicture" ToRole="Memory" />
+  </EntityType>
+  <Association Name="FK__Memory__UserId__2CBDA3B5">
+    <End Type="PORTALModel.UserRegistration" Role="UserRegistration" Multiplicity="1" />
+    <End Type="PORTALModel.Memory" Role="Memory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserRegistration">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Memory">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__MemoryPic__Memor__2F9A1060">
+    <End Type="PORTALModel.Memory" Role="Memory" Multiplicity="1" />
+    <End Type="PORTALModel.MemoryPicture" Role="MemoryPicture" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Memory">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="MemoryPicture">
+        <PropertyRef Name="MemoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Post">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Type="Int64" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="PostTitle" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="PostContent" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="Status" Nullable="false" />
+    <Property Type="DateTime" Name="CreatedOn" Precision="3" />
+    <Property Type="Int64" Name="CreatedBy" />
+    <Property Type="DateTime" Name="UpdatedOn" Precision="3" />
+    <Property Type="Int64" Name="UpdateBy" />
+    <Property Type="String" Name="PostType" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Type="Int64" Name="UserId" Nullable="false" />
+    <NavigationProperty Name="StatusCondition" Relationship="PORTALModel.FK__Post__Status__4BAC3F29" FromRole="Post" ToRole="StatusCondition" />
+    <NavigationProperty Name="UserRegistration" Relationship="PORTALModel.FK__Post__UserId__40C49C62" FromRole="Post" ToRole="UserRegistration" />
+    <NavigationProperty Name="PostCateogryMappings" Relationship="PORTALModel.FK__PostCateo__PostI__4F7CD00D" FromRole="Post" ToRole="PostCateogryMapping" />
+    <NavigationProperty Name="PostImages" Relationship="PORTALModel.FK__PostImage__PostI__5441852A" FromRole="Post" ToRole="PostImage" />
+  </EntityType>
+  <Association Name="FK__Post__Status__4BAC3F29">
+    <End Type="PORTALModel.StatusCondition" Role="StatusCondition" Multiplicity="1" />
+    <End Type="PORTALModel.Post" Role="Post" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="StatusCondition">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Post">
+        <PropertyRef Name="Status" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Post__UserId__40C49C62">
+    <End Type="PORTALModel.UserRegistration" Role="UserRegistration" Multiplicity="1" />
+    <End Type="PORTALModel.Post" Role="Post" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserRegistration">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Post">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__PostCateo__PostI__4F7CD00D">
+    <End Type="PORTALModel.Post" Role="Post" Multiplicity="0..1" />
+    <End Type="PORTALModel.PostCateogryMapping" Role="PostCateogryMapping" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Post">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PostCateogryMapping">
+        <PropertyRef Name="PostId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__PostImage__PostI__5441852A">
+    <End Type="PORTALModel.Post" Role="Post" Multiplicity="0..1" />
+    <End Type="PORTALModel.PostImage" Role="PostImage" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Post">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PostImage">
+        <PropertyRef Name="PostId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Enquiry">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Type="Int64" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="EmailTo" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EmailFrom" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="FromMobileNumber" Nullable="false" MaxLength="13" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EnquirySubject" Nullable="false" MaxLength="13" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EnquiryDescription" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="EnquiryDocument" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Type="Int32" Name="Status" Nullable="false" />
+    <Property Type="DateTime" Name="CreatedOn" Precision="3" />
+    <Property Type="Int64" Name="CreatedBy" />
+    <Property Type="DateTime" Name="UpdatedOn" Precision="3" />
+    <Property Type="Int64" Name="UpdateBy" />
+    <NavigationProperty Name="StatusCondition" Relationship="PORTALModel.FK__Enquiry__Status__477199F1" FromRole="Enquiry" ToRole="StatusCondition" />
+  </EntityType>
+  <Association Name="FK__Enquiry__Status__477199F1">
+    <End Type="PORTALModel.StatusCondition" Role="StatusCondition" Multiplicity="1" />
+    <End Type="PORTALModel.Enquiry" Role="Enquiry" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="StatusCondition">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Enquiry">
+        <PropertyRef Name="Status" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="webpages_UsersInRoles">
+    <Key>
+      <PropertyRef Name="UserId" />
+      <PropertyRef Name="RoleId" />
+    </Key>
+    <Property Type="Int32" Name="UserId" Nullable="false" />
+    <Property Type="Int32" Name="RoleId" Nullable="false" />
+    <NavigationProperty Name="webpages_Roles" Relationship="PORTALModel.fk_RoleId" FromRole="webpages_UsersInRoles" ToRole="webpages_Roles" />
+  </EntityType>
+  <Association Name="fk_RoleId">
+    <End Type="PORTALModel.webpages_Roles" Role="webpages_Roles" Multiplicity="1" />
+    <End Type="PORTALModel.webpages_UsersInRoles" Role="webpages_UsersInRoles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="webpages_Roles">
+        <PropertyRef Name="RoleId" />
+      </Principal>
+      <Dependent Role="webpages_UsersInRoles">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Search">
+    <Key>
+      <PropertyRef Name="ContentId" />
+      <PropertyRef Name="Title" />
+      <PropertyRef Name="SearchContent" />
+      <PropertyRef Name="SearchType" />
+    </Key>
+    <Property Name="Id" Type="Int64" />
+    <Property Name="ContentId" Type="Int64" Nullable="false" />
+    <Property Name="Title" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="SearchContent" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="SearchType" Type="String" Nullable="false" MaxLength="14" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="ExceptionLogger">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ExceptionMessage" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="ExceptionStackTrace" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="ExceptionLoggedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="ExceptionLoggedOn" Type="DateTime" Precision="3" />
+    <Property Name="ExceptionPath" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Otp">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="Int64" Nullable="false" />
+    <Property Name="OtpCode" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="IsActive" Type="Boolean" />
+    <Property Name="IsVerified" Type="Boolean" />
+    <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="UserRegistration" Relationship="PORTALModel.FK__Otp__UserId__160F4887" FromRole="Otp" ToRole="UserRegistration" />
+  </EntityType>
+  <Association Name="FK__Otp__UserId__160F4887">
+    <End Type="PORTALModel.UserRegistration" Role="UserRegistration" Multiplicity="1" />
+    <End Type="PORTALModel.Otp" Role="Otp" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserRegistration">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Otp">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

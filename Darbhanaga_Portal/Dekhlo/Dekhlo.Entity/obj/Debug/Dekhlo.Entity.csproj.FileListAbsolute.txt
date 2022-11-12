@@ -1,0 +1,9 @@
+E:\Projects\TFSOnline_Sumit\Darbhanaga_Portal\Dekhlo\Dekhlo.Entity\bin\Debug\Dekhlo.Entity.dll.config
+E:\Projects\TFSOnline_Sumit\Darbhanaga_Portal\Dekhlo\Dekhlo.Entity\bin\Debug\Dekhlo.Entity.dll
+E:\Projects\TFSOnline_Sumit\Darbhanaga_Portal\Dekhlo\Dekhlo.Entity\bin\Debug\Dekhlo.Entity.pdb
+E:\Projects\TFSOnline_Sumit\Darbhanaga_Portal\Dekhlo\Dekhlo.Entity\bin\Debug\EntityFramework.dll
+E:\Projects\TFSOnline_Sumit\Darbhanaga_Portal\Dekhlo\Dekhlo.Entity\bin\Debug\EntityFramework.SqlServer.dll
+E:\Projects\TFSOnline_Sumit\Darbhanaga_Portal\Dekhlo\Dekhlo.Entity\bin\Debug\EntityFramework.xml
+E:\Projects\TFSOnline_Sumit\Darbhanaga_Portal\Dekhlo\Dekhlo.Entity\bin\Debug\EntityFramework.SqlServer.xml
+E:\Projects\TFSOnline_Sumit\Darbhanaga_Portal\Dekhlo\Dekhlo.Entity\obj\Debug\Dekhlo.Entity.dll
+E:\Projects\TFSOnline_Sumit\Darbhanaga_Portal\Dekhlo\Dekhlo.Entity\obj\Debug\Dekhlo.Entity.pdb

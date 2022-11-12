@@ -1,0 +1,40 @@
+﻿@model Dekhlo.Web.Models.PostImage
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>PostImage</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PostId, "Post")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("PostId", String.Empty)
+            @Html.ValidationMessageFor(model => model.PostId)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ImageUrl)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ImageUrl)
+            @Html.ValidationMessageFor(model => model.ImageUrl)
+        </div>
+
+        <p>
+            <input type="submit" class="btn btn-primary" value="Create" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+

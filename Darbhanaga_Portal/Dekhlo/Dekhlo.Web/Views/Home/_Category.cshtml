@@ -1,0 +1,16 @@
+﻿@using Dekhlo.Web.Models
+@{
+    PORTALEntitiy db = new PORTALEntitiy();
+    List<Cateogry> categories = db.Cateogries.Include("PostCateogryMappings").OrderBy(m => m.CateogryName).ToList();
+    if (categories != null && categories.Count > 0)
+    {
+        foreach (var item in categories)
+        {
+    <li class="list-group-item">
+        <span class="badge">@item.PostCateogryMappings.Count</span>
+        @Html.ActionLink(item.CateogryName, "CateogryWisePost", "Home", new { id=item.Id, title=item.CateogryName.ToSeoUrl() }, null)
+    </li>
+
+        }
+    }
+}

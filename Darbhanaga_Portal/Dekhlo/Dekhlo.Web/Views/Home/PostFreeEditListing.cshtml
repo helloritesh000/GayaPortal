@@ -1,0 +1,194 @@
+﻿@model Dekhlo.Web.Models.ModelProperty
+@using Dekhlo.Web.Models
+@{
+    ViewBag.Title = "PostFreeAddListing";
+    Layout = "~/Views/Shared/LayoutResponsive.cshtml";
+}
+
+<div class="divParentPostYourAdd">
+
+    @using (Html.BeginForm("PostFreeAddListing", "Home", FormMethod.Post, new { @class = "form-horizontal", enctype = "multipart/form-data" }))
+    {
+        @Html.HiddenFor(model => model.ObjPost.Id)
+
+        <fieldset>
+            <!-- Form Name -->
+            <legend>Post Your Free  Add</legend>
+
+            <!-- Text input-->
+            <div class="form-group">
+                @Html.LabelFor(model => model.ObjPost.PostTitle, new { @class = "col-md-4 control-label" })
+                <div class="col-md-4">
+                    @Html.TextBoxFor(model => model.ObjPost.PostTitle, new { placeholder = "Title", @class = "form-control input-md" })
+                    @Html.ValidationMessageFor(model => model.ObjPost.PostTitle)
+                    <span class="help-block"></span>
+                </div>
+            </div>
+
+            <!-- Button Drop Down -->
+            <div class="form-group">
+                @Html.Label("Category", new { @class = "col-md-4 control-label" })
+                <div class="col-md-4">
+                    <div class="input-group">
+                        @Html.TextBox("txtCategory", (string)ViewBag.SelectedCategoryValue, new { placeholder = "Category", @class = "form-control input-md" })
+@Html.Hidden("hdnCategoryItemSelected", (object)ViewBag.SelectedCategoryId)
+                        @Html.ValidationMessage("txtCategory")
+                        <div class="input-group-btn">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                Select
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu pull-right">
+                                @if (ViewBag.Category != null)
+                                {
+                                    foreach (var item in (IEnumerable<Cateogry>)ViewBag.Category)
+                                    {
+                                        <li onclick="javascript:document.getElementById('txtCategory').value = this.innerText;document.getElementById('hdnCategoryItemSelected').value = this.getElementsByTagName('input')[0].value;">@Html.Hidden("hdnCategoryItem", item.Id) <a href="#"> @item.CateogryName</a></li>
+                                    }
+
+                                    @*<li onclick="javascript:document.getElementById('Category').value = this.innerText;"><a href="#">Option two</a></li>
+                                        <li onclick="javascript:document.getElementById('Category').value = this.innerText;"><a href="#">Option three</a></li>*@
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <hr />
+
+            <!-- Textarea -->
+            <div class="form-group">
+                @Html.LabelFor(model => model.ObjPost.PostContent, new { @class = "col-md-4 control-label" })
+                <div class="col-md-4">
+                    @Html.TextAreaFor(model => model.ObjPost.PostContent, new { placeholder = "Add Description", @class = "form-control", rows = 8 })
+                    @Html.ValidationMessageFor(model => model.ObjPost.PostContent)
+                    <span class="help-block"></span>
+                </div>
+            </div>
+
+            <!-- File Button -->
+            @*<div class="form-group">
+                    <label class="col-md-4 control-label" for="filebutton">Upload Photos</label>
+                    <div class="col-md-4">
+                        <input id="fldUploadPhotos" name="filebutton" class="input-file" type="file" style="display: none;">
+                        <input id="btnUploadPhotos" name="filebutton" class="input-file btn btn-primary" type="button" value="Browse" onclick="javascript: document.getElementById('fldUploadPhotos').click();">
+                    </div>
+                </div>*@
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="filebutton">Upload Photos</label>
+                <div class="col-md-4">
+                    <input id="fldUploadPhotos1" name="filebutton1" class="input-file" type="file" style="display: none;" onchange="javascript: InputFileChange(this, 'divAddPostImage1');" />
+                    <input id="fldUploadPhotos2" name="filebutton2" class="input-file" type="file" style="display: none;" onchange="javascript: InputFileChange(this, 'divAddPostImage2');" />
+                    <input id="fldUploadPhotos3" name="filebutton3" class="input-file" type="file" style="display: none;" onchange="javascript: InputFileChange(this, 'divAddPostImage3');" />
+                    <input id="fldUploadPhotos4" name="filebutton4" class="input-file" type="file" style="display: none;" onchange="javascript: InputFileChange(this, 'divAddPostImage4');" />
+                    <input id="fldUploadPhotos5" name="filebutton5" class="input-file" type="file" style="display: none;" onchange="javascript: InputFileChange(this, 'divAddPostImage5');" />
+                    <input id="fldUploadPhotos6" name="filebutton6" class="input-file" type="file" style="display: none;" onchange="javascript: InputFileChange(this, 'divAddPostImage6');" />
+                    <div class="row">
+                        <div class="col-md-3 divAddPostImage" id="divAddPostImage1" onmouseover="javascript: ShowPlusAndCross(this);" onmouseout="javascript: HideCross(this);">
+                            <input type="hidden" id="hdnUploadPhotos1" name="hdnUploadPhotos1" value="@(Model.ObjPost.PostImages != null && Model.ObjPost.PostImages.Count > 0 ? Model.ObjPost.PostImages.ToArray()[0].Id.ToString() : "0")" />
+                            <img src="@(Model.ObjPost.PostImages != null && Model.ObjPost.PostImages.Count > 0 ? Model.ObjPost.PostImages.ToArray()[0].ImageUrl : "")" class="img img-responsive" id="imgUploadPhotos1" />
+                            <span class="glyphicon glyphicon-plus spanPlus" onclick="javascript: document.getElementById('fldUploadPhotos1').click();"></span>
+                            <span class="glyphicon glyphicon-remove spanRemove" onclick="javascript: RemoveBrowsedAttachment('divAddPostImage1', 'fldUploadPhotos1', 'filebutton1');"></span>
+                        </div>
+                        <div class="col-md-3 divAddPostImage" id="divAddPostImage2" onmouseover="javascript: ShowPlusAndCross(this);" onmouseout="javascript: HideCross(this);">
+                            <input type="hidden" id="hdnUploadPhotos2" name="hdnUploadPhotos2" value="@(Model.ObjPost.PostImages != null && Model.ObjPost.PostImages.Count > 1 ? Model.ObjPost.PostImages.ToArray()[1].Id.ToString() : "0")" />
+                            <img src="@(Model.ObjPost.PostImages != null && Model.ObjPost.PostImages.Count > 1 ? Model.ObjPost.PostImages.ToArray()[1].ImageUrl : "")" class="img img-responsive" id="imgUploadPhotos2" />
+                            <span class="glyphicon glyphicon-plus spanPlus" onclick="javascript: document.getElementById('fldUploadPhotos2').click();"></span>
+                            <span class="glyphicon glyphicon-remove spanRemove" onclick="javascript: RemoveBrowsedAttachment('divAddPostImage2', 'fldUploadPhotos2', 'filebutton2');"></span>
+                        </div>
+                        <div class="col-md-3 divAddPostImage" id="divAddPostImage3" onmouseover="javascript: ShowPlusAndCross(this);" onmouseout="javascript: HideCross(this);">
+                            <input type="hidden" id="hdnUploadPhotos3" name="hdnUploadPhotos3" value="@(Model.ObjPost.PostImages != null && Model.ObjPost.PostImages.Count > 2 ? Model.ObjPost.PostImages.ToArray()[2].Id.ToString() : "0")" />
+                            <img src="@(Model.ObjPost.PostImages != null && Model.ObjPost.PostImages.Count > 2 ? Model.ObjPost.PostImages.ToArray()[2].ImageUrl : "")" class="img img-responsive" id="imgUploadPhotos3" />
+                            <span class="glyphicon glyphicon-plus spanPlus" onclick="javascript: document.getElementById('fldUploadPhotos3').click();"></span>
+                            <span class="glyphicon glyphicon-remove spanRemove" onclick="javascript: RemoveBrowsedAttachment('divAddPostImage3', 'fldUploadPhotos3', 'filebutton3');"></span>
+                        </div>
+                        <div class="col-md-3 divAddPostImage" id="divAddPostImage4" onmouseover="javascript: ShowPlusAndCross(this);" onmouseout="javascript: HideCross(this);">
+                            <input type="hidden" id="hdnUploadPhotos4" name="hdnUploadPhotos4" value="@(Model.ObjPost.PostImages != null && Model.ObjPost.PostImages.Count > 3 ? Model.ObjPost.PostImages.ToArray()[3].Id.ToString() : "0")" />
+                            <img src="@(Model.ObjPost.PostImages != null && Model.ObjPost.PostImages.Count > 3 ? Model.ObjPost.PostImages.ToArray()[3].ImageUrl : "")" class="img img-responsive" id="imgUploadPhotos4" />
+                            <span class="glyphicon glyphicon-plus spanPlus" onclick="javascript: document.getElementById('fldUploadPhotos4').click();"></span>
+                            <span class="glyphicon glyphicon-remove spanRemove" onclick="javascript: RemoveBrowsedAttachment('divAddPostImage4', 'fldUploadPhotos4', 'filebutton4');"></span>
+                        </div>
+                        <div class="col-md-3 divAddPostImage" id="divAddPostImage5" onmouseover="javascript: ShowPlusAndCross(this);" onmouseout="javascript: HideCross(this);">
+                            <input type="hidden" id="hdnUploadPhotos5" name="hdnUploadPhotos5" value="@(Model.ObjPost.PostImages != null && Model.ObjPost.PostImages.Count > 4 ? Model.ObjPost.PostImages.ToArray()[4].Id.ToString() : "0")" />
+                            <img src="@(Model.ObjPost.PostImages != null && Model.ObjPost.PostImages.Count > 4 ? Model.ObjPost.PostImages.ToArray()[4].ImageUrl : "")" class="img img-responsive" id="imgUploadPhotos5" />
+                            <span class="glyphicon glyphicon-plus spanPlus" onclick="javascript: document.getElementById('fldUploadPhotos5').click();"></span>
+                            <span class="glyphicon glyphicon-remove spanRemove" onclick="javascript: RemoveBrowsedAttachment('divAddPostImage5', 'fldUploadPhotos5', 'filebutton5');"></span>
+                        </div>
+                        <div class="col-md-3 divAddPostImage" id="divAddPostImage6" onmouseover="javascript: ShowPlusAndCross(this);" onmouseout="javascript: HideCross(this);">
+                            <input type="hidden" id="hdnUploadPhotos6" name="hdnUploadPhotos6" value="@(Model.ObjPost.PostImages != null && Model.ObjPost.PostImages.Count > 5 ? Model.ObjPost.PostImages.ToArray()[5].Id.ToString() : "0")" />
+                            <img src="@(Model.ObjPost.PostImages != null && Model.ObjPost.PostImages.Count > 5 ? Model.ObjPost.PostImages.ToArray()[5].ImageUrl : "")" class="img img-responsive" id="imgUploadPhotos6" />
+                            <span class="glyphicon glyphicon-plus spanPlus" onclick="javascript: document.getElementById('fldUploadPhotos6').click();"></span>
+                            <span class="glyphicon glyphicon-remove spanRemove" onclick="javascript: RemoveBrowsedAttachment('divAddPostImage6', 'fldUploadPhotos6', 'filebutton6');"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <hr />
+
+            <!-- Text input-->
+            <div class="form-group">
+                @Html.LabelFor(model => model.ObjUserRegistration.FirstName, new { @class = "col-md-4 control-label" })
+                <div class="col-md-4">
+                    @Html.TextBoxFor(model => model.ObjUserRegistration.FirstName, new { placeholder = "First Name", @class = "form-control input-md" })
+                    @Html.ValidationMessageFor(model => model.ObjUserRegistration.FirstName)
+                    <span class="help-block"></span>
+                </div>
+            </div>
+
+            <!-- Text input-->
+            <div class="form-group">
+                @Html.LabelFor(model => model.ObjUserRegistration.LastName, new { @class = "col-md-4 control-label" })
+                <div class="col-md-4">
+                    @Html.TextBoxFor(model => model.ObjUserRegistration.LastName, new { placeholder = "Last Name", @class = "form-control input-md" })
+                    @Html.ValidationMessageFor(model => model.ObjUserRegistration.LastName)
+                    <span class="help-block"></span>
+                </div>
+            </div>
+
+
+            <!-- Text input-->
+            <div class="form-group">
+                @Html.LabelFor(model => model.ObjUserRegistration.MobileNo, new { @class = "col-md-4 control-label" })
+                <div class="col-md-4">
+                    @Html.TextBoxFor(model => model.ObjUserRegistration.MobileNo, new { placeholder = "Mobile No.", @class = "form-control input-md" })
+                    @Html.ValidationMessageFor(model => model.ObjUserRegistration.MobileNo)
+                    <span class="help-block"></span>
+                </div>
+            </div>
+
+            <!-- Textarea -->
+            <div class="form-group">
+                @Html.LabelFor(model => model.ObjUserRegistration.Address, new { @class = "col-md-4 control-label" })
+                <div class="col-md-4">
+                    @Html.TextBoxFor(model => model.ObjUserRegistration.Address, new { placeholder = "Address", @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.ObjUserRegistration.Address)
+                    <span class="help-block"></span>
+                </div>
+            </div>
+
+            <div class="col-md-offset-4">
+                <p>By clicking 'Submit Ad' you accept our <strong><a href="#">Terms of Use & Posting Rules</a></strong></p>
+            </div>
+
+
+            <div class="form-group">
+                @Html.ValidationSummary(true)
+            </div>
+
+            <hr />
+
+            <!-- Button (Double) -->
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="button1id"></label>
+                <div class="col-md-8">
+                    <button id="btnSubmit" name="btnSubmit" class="btn btn-success">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Submit&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button>
+                    @*<button id="button2id" name="button2id" class="btn btn-danger">Scary Button</button>*@
+                </div>
+            </div>
+
+        </fieldset>
+    }
+
+</div>

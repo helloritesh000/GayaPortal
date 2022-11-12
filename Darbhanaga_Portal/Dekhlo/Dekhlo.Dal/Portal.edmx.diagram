@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="336274a0b24d4c8d8677f75d1aa1a2c5" Name="Diagram1" ZoomLevel="108">
+        <EntityTypeShape EntityType="PORTALModel.Cateogry" Width="1.5" PointX="2.5229372878200085" PointY="5.976542281907304" />
+        <EntityTypeShape EntityType="PORTALModel.Post" Width="1.5" PointX="9" PointY="2" />
+        <EntityTypeShape EntityType="PORTALModel.PostCateogryMapping" Width="1.5" PointX="5" PointY="1.625" />
+        <EntityTypeShape EntityType="PORTALModel.PostImage" Width="1.5" PointX="7" PointY="1.25" />
+        <EntityTypeShape EntityType="PORTALModel.StatusCondition" Width="1.5" PointX="7" PointY="3.625" />
+        <EntityTypeShape EntityType="PORTALModel.SubCateogry" Width="1.5" PointX="1.375" PointY="5.5" />
+        <EntityTypeShape EntityType="PORTALModel.UserRegistration" Width="1.5" PointX="5.75" PointY="6" />
+        <EntityTypeShape EntityType="PORTALModel.VisitorCateogry" Width="1.5" PointX="3.5" PointY="6.625" />
+        <AssociationConnector Association="PORTALModel.FK__Cateogry__Status__4316F928" />
+        <AssociationConnector Association="PORTALModel.FK__PostCateo__Cateo__5070F446" />
+        <AssociationConnector Association="PORTALModel.FK__SubCateog__Child__46E78A0C" />
+        <AssociationConnector Association="PORTALModel.FK__SubCateog__Paren__47DBAE45" />
+        <AssociationConnector Association="PORTALModel.FK__VisitorCa__Cateo__5812160E" />
+        <AssociationConnector Association="PORTALModel.FK__Post__Status__4BAC3F29" />
+        <AssociationConnector Association="PORTALModel.FK__PostCateo__PostI__4F7CD00D" />
+        <AssociationConnector Association="PORTALModel.FK__PostImage__PostI__5441852A" />
+        <AssociationConnector Association="PORTALModel.FK__UserRegis__Statu__3E52440B" />
+        <AssociationConnector Association="PORTALModel.FK__VisitorCa__Visit__571DF1D5" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

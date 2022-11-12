@@ -1,0 +1,173 @@
+﻿@model Dekhlo.Web.Models.Post
+@using Dekhlo.Web.Models
+
+@{
+    ViewBag.Title = "SinglePost";
+    Layout = "~/Views/Shared/LayoutResponsive.cshtml";
+    var item = Model;
+}
+
+<div class="col-md-12 col-xs-12 col-sm-12">
+    <div class="row">
+        <div class="col-md-9 col-xs-9 col-sm-12">
+            <div class="row">
+                @if (item != null)
+                {
+                    //foreach (var item in Model)
+                    //{
+                    <div class="col-md-12" style="margin-bottom: 20px;">
+                        <div class="row">
+                            <div class="col-md-3 divProdImgParent">
+                                <div class="row">
+                                    @if (item != null && item.PostImages != null && item.PostImages.Count > 0)
+                                    {
+                                        foreach (var img in item.PostImages)
+                                        {
+                                        <div id="bigpic" class="b">
+                                            <img src="@img.ImageUrl" alt="Image" class="img img-responsive" />
+                                            <p id="desc"></p>
+                                        </div>
+                                            break;
+                                        }
+                                    }
+
+                                    <div id="thumbs" class="thumbs">
+                                        <ul>
+                                            @if (item != null && item.PostImages != null && item.PostImages.Count > 0)
+                                            {
+                                                foreach (var img in item.PostImages)
+                                                {
+                                                <li>
+                                                    <a href="@img.ImageUrl" rel="@img.ImageUrl">
+                                                        <img src="@img.ImageUrl" alt="thumbnail" class="img img-responsive" />
+                                                    </a>
+                                                </li>
+                                                }
+                                            }
+                                            <div style="clear: both;"></div>
+                                        </ul>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-9">
+                                <h2>@item.PostTitle</h2>
+                                <hr style="margin: 0px;" />
+                                <div>
+                                    <i class="pull-right">@String.Format("{0:D}", item.CreatedOn)</i>
+                                    <div style="clear: both;"></div>
+                                </div>
+
+                                <p>@item.PostContent</p>
+                                <div class="col-md-6">
+                                    <div class="row">
+                                        <div class="table-responsive">
+                                            <table class="table table-border">
+                                                <tr>
+                                                    <td>
+                                                        @Html.DisplayName("Name") : @Html.DisplayFor(model => item.UserRegistration.FirstName) @Html.DisplayFor(model => item.UserRegistration.LastName)
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        @Html.DisplayNameFor(model => model.UserRegistration.MobileNo) : @Html.DisplayFor(model => item.UserRegistration.MobileNo)
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="row">
+                                        <div class="table-responsive">
+                                            <table class="table table-border">
+                                                <tr>
+                                                    <td>
+                                                        @Html.DisplayNameFor(model => model.UserRegistration.Address) : @Html.DisplayFor(model => item.UserRegistration.Address)
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        @Html.DisplayNameFor(model => model.Status) : @Html.DisplayFor(model => item.StatusCondition.StatusName)
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <hr />
+                                    <p>
+                                        @if (ViewBag.Category != null && (List<PostCateogryMapping>)ViewBag.Category != null && ((List<PostCateogryMapping>)ViewBag.Category).Count > 0)
+                                        {
+                                            foreach (var cat in (List<PostCateogryMapping>)ViewBag.Category)
+                                            {
+                                                if (cat.Cateogry != null)
+                                                {
+                                                    <i>@Html.ActionLink(cat.Cateogry.CateogryName, "CateogryWisePost", "Home", new { id = cat.CateogryId, title = cat.Cateogry.CateogryName.ToSeoUrl() }, null)</i>
+                                                }
+                                            }
+                                        }
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div style="clear: both;"></div>
+                    <hr />
+                    //}
+                }
+            </div>
+        </div>
+        <div class="col-md-3 col-xs-3 col-sm-12">
+            <div class="row">
+                @Html.Partial("~/Views/Home/_RightFreeListing.cshtml")
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script src="@Url.Content("~/Scripts/jquery.mousewheel-3.1.12.js")" ></script>
+    <script src="@Url.Content("~/Scripts/jquery.jcarousellite.min.js")"></script>
+    <script type="text/javascript">
+
+
+        $(document).ready(function () {
+
+
+            $(".rightAddListing").jCarouselLite({
+                auto: 1000,
+                speed: 1200,
+                vertical: true,
+                circular: true,
+                mouseWheel: true
+            });
+
+            $('.thumbs ul li a').hover(
+           function () {
+               var currentBigImage = $(this).parents('.divProdImgParent').find('#bigpic img').attr('src');
+               var newBigImage = $(this).attr('href');
+               var currentThumbSrc = $(this).attr('rel');
+               switchImage(newBigImage, currentBigImage, currentThumbSrc, $(this).parents('.divProdImgParent'));
+           },
+           function () { }
+       );
+
+            function switchImage(imageHref, currentBigImage, currentThumbSrc, divProdImgParent) {
+                var theBigImage = divProdImgParent.find('#bigpic img');
+                if (imageHref != currentBigImage) {
+                    theBigImage.fadeOut(250, function () {
+                        theBigImage.attr('src', imageHref).fadeIn(350);
+
+                        var newImageDesc = divProdImgParent.find(".thumbs ul li a      img[src='" + currentThumbSrc + "']").attr('alt');
+                        //divProdImgParent.find('p#desc').empty().html(newImageDesc);
+                    });
+                }
+            }
+
+        });
+
+    </script>
+}

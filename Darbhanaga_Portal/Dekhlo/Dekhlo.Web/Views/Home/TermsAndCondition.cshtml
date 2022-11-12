@@ -1,0 +1,19 @@
+﻿@model Dekhlo.Web.Models.PageContent
+@{
+    ViewBag.Title = "TermsAndCondition";
+    Layout = "~/Views/Shared/LayoutResponsive.cshtml";
+}
+
+<h2>Terms & Condition</h2>
+@if (Model != null && !String.IsNullOrEmpty(Model.PageText))
+{
+    @Html.Raw(Model.PageText)
+}
+
+
+
+
+
+
+
+

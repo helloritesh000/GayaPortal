@@ -1,0 +1,33 @@
+﻿@model IEnumerable<Dekhlo.Web.Models.Search>
+
+@if (Model != null && Model.Count() > 0)
+{
+    foreach (var item in Model)
+    {
+        string actionLink = "#";
+        if(!String.IsNullOrEmpty(item.SearchType))
+        {
+            if (item.SearchType == "Memory")
+            {
+                actionLink = Url.Action("ShareYourMemoriesSingle", "Home", new { id = item.ContentId, title = item.Title.ToSeoUrl() });
+            }
+            else if (item.SearchType == "Post")
+            {
+                actionLink = Url.Action("SinglePost", "Home", new { postid = item.ContentId, title = item.Title.ToSeoUrl() });
+            }
+            else if (item.SearchType == "SearchYourNeed")
+            {
+                actionLink = Url.Action("SearchYourNeeds", "Home");
+            }
+        }
+        <div>
+            <p>@*<strong>@item.Title</strong>*@</p>
+            <p><a href="@actionLink">@item.SearchContent</a></p>
+            <hr />
+        </div>
+    }
+}
+else
+{
+<p>no result found...</p>
+}

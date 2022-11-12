@@ -1,0 +1,32 @@
+﻿@model Dekhlo.Web.Models.Logo
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Logo</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.TagContent)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.TagContent)
+    </div>
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ImageContent)
+    </div>
+    <div class="display-field">
+         @{
+             var base64 = Convert.ToBase64String(Model.ImageContent);
+                var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+        }
+        <img src="@imgSrc" />
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

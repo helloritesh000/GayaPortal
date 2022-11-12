@@ -1,0 +1,113 @@
+﻿@model Dekhlo.Web.Models.ModelProperty
+@{
+    ViewBag.Title = "SearchYourNeedEdit";
+    Layout = "~/Views/Shared/LayoutResponsive.cshtml";
+}
+
+
+<div class="divParentPostYourAdd">
+    <div class="row">
+        <div class="col-md-4">
+            @using (Ajax.BeginForm("SearchYourNeedEdit", "Home", null,
+                    new AjaxOptions
+                    {
+                        HttpMethod = "Post",
+                        UpdateTargetId = "divNeedsAdded",
+                        OnSuccess = "Success()",
+                        OnFailure = "Failure()",
+                        InsertionMode = InsertionMode.Replace,
+                        LoadingElementId = "loader"
+                    },
+                    new { @class = "form-horizontal", enctype = "multipart/form-data", id = "frmForm", name = "frmForm" }))
+            {
+
+                @*@Html.HiddenFor(model => model.ObjSearchYourNeedLink.Id)*@
+                @Html.HiddenFor(model => model.ObjSearchYourNeed.Id)
+                @Html.HiddenFor(model => model.ObjUserRegistration.Id)
+                @*@Html.HiddenFor(model => model.ObjSearchYourNeedLink.LinkType)*@
+
+                @Html.ValidationSummary(true)
+
+                <fieldset>
+
+                    <!-- Form Name -->
+                    <legend>Search your need</legend>
+
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.ObjUserRegistration.FirstName, new { @class = "col-md-4 control-label" })
+                        <div class="col-md-8">
+                            @Html.TextBoxFor(model => model.ObjUserRegistration.FirstName, new { @class = "form-control input-md", placeholder = "First Name" })
+                            @Html.ValidationMessageFor(model => model.ObjUserRegistration.FirstName)
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.ObjUserRegistration.LastName, new { @class = "col-md-4 control-label" })
+                        <div class="col-md-8">
+                            @Html.TextBoxFor(model => model.ObjUserRegistration.LastName, new { @class = "form-control input-md", placeholder = "Last Name" })
+                            @Html.ValidationMessageFor(model => model.ObjUserRegistration.LastName)
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.ObjUserRegistration.MobileNo, new { @class = "col-md-4 control-label" })
+                        <div class="col-md-8">
+                            @Html.TextBoxFor(model => model.ObjUserRegistration.MobileNo, new { @class = "form-control input-md", placeholder = "Mobile No." })
+                            @Html.ValidationMessageFor(model => model.ObjUserRegistration.MobileNo)
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.ObjUserRegistration.Address, new { @class = "col-md-4 control-label" })
+                        <div class="col-md-8">
+                            @Html.TextAreaFor(model => model.ObjUserRegistration.Address, new { @class = "form-control input-md", placeholder = "Address" })
+                            @Html.ValidationMessageFor(model => model.ObjUserRegistration.Address)
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.ObjUserRegistration.PinCode, new { @class = "col-md-4 control-label" })
+                        <div class="col-md-8">
+                            @Html.TextBoxFor(model => model.ObjUserRegistration.PinCode, new { @class = "form-control input-md", placeholder = "Pin Code" })
+                            @Html.ValidationMessageFor(model => model.ObjUserRegistration.PinCode)
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.ObjUserRegistration.ProfilePic, new { @class = "col-md-4 control-label" })
+                        <div class="col-md-8">
+                            <input id="fileUploadProfilePic" name="fileUploadProfilePic" class="input-file" type="file" style="display: none;">
+                            <input id="btnUploadProfilePic" class="input-file btn btn-primary" type="button" value="Upload Profile Pic" onclick="javascript: document.getElementById('fileUploadProfilePic').click();">
+                            @{
+                                var base64 = Convert.ToBase64String(Model.ObjUserRegistration.ProfilePic);
+                                var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+                            }
+                            <img src="@imgSrc" width="100" height="100" />
+                        </div>
+                    </div>
+
+                    <!-- Button -->
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="singlebutton"></label>
+                        <div class="col-md-8">
+                            <input type="submit" value="Publish" class="btn btn-primary" />
+                            <span id="loader"></span>
+                        </div>
+                    </div>
+
+                </fieldset>
+            }
+        </div>
+        <div class="col-md-8">
+            <div class="row">
+                <div class="table-responsive" id="divNeedsAdded">
+                    @Html.Partial("~/Views/Home/_SearchYourNeedList.cshtml")
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

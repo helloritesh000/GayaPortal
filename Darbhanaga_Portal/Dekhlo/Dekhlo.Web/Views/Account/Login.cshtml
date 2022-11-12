@@ -1,0 +1,166 @@
+﻿@model Dekhlo.Web.Models.ModelProperty
+
+@{
+    ViewBag.Title = "Log in";
+    Layout = "~/Views/Shared/LayoutResponsive.cshtml";
+}
+
+<div class="col-md-12" style="background-color: #fff;">
+    <div class="col-md-4">
+        @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true)
+            <fieldset>
+
+                <!-- Form Name -->
+                <legend>Login</legend>
+
+                <!-- Text input-->
+                <div class="form-group">
+                    @Html.LabelFor(m => m.ObjLoginModel.UserName, new { @class = "col-md-4 control-label" })
+                    <div class="col-md-8">
+                        @Html.TextBoxFor(m => m.ObjLoginModel.UserName, new { placeholder = "Username", @class = "form-control input-md" })
+                        @Html.ValidationMessageFor(m => m.ObjLoginModel.UserName)
+                    </div>
+                </div>
+
+                <!-- Text input-->
+                <div class="form-group">
+                    @Html.LabelFor(m => m.ObjLoginModel.Password, new { @class = "col-md-4 control-label" })
+                    <div class="col-md-8">
+                        @Html.PasswordFor(m => m.ObjLoginModel.Password, new { placeholder = "Password", @class = "form-control input-md" })
+                        @Html.ValidationMessageFor(m => m.ObjLoginModel.Password)
+                    </div>
+                </div>
+
+                <!-- Multiple Checkboxes (inline) -->
+                <div class="form-group">
+                    @Html.LabelFor(m => m.ObjLoginModel.RememberMe, new { @class = "checkbox col-md-4 control-label" })
+                    <div class="col-md-8">
+                        <label class="checkbox-inline" for="checkboxes-0">
+                            @Html.CheckBoxFor(m => m.ObjLoginModel.RememberMe)
+                            <input type="checkbox" name="checkboxes" id="checkboxes-0" value="">
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Button -->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="singlebutton"></label>
+                    <div class="col-md-8">
+                        <input type="submit" name="singlebutton" class="btn btn-primary" value="Log in" />
+                    </div>
+                </div>
+                <p>
+                    @Html.ActionLink("Register", "Register", "Account") if you don't have an account.
+                </p>
+                <p>
+                    Forget password? Get @Html.ActionLink("OTP", "GetOtp", "Account") to reset.
+                </p>
+
+            </fieldset>
+        }
+    </div>
+    <div class="col-md-5">
+        @using (Html.BeginForm("Register", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true)
+            <fieldset>
+                <!-- Form Name -->
+                <legend>Registration</legend>
+
+                <!-- Text input-->
+                <div class="form-group">
+                    @Html.LabelFor(m => m.ObjRegisterModel.FirstName, new { @class = "col-md-4 control-label" })
+                    <div class="col-md-7">
+                        @Html.TextBoxFor(m => m.ObjRegisterModel.FirstName, new { placeholder = "First Name", @class = "form-control input-md" })
+                        @Html.ValidationMessageFor(m => m.ObjRegisterModel.FirstName)
+                    </div>
+                </div>
+
+                <!-- Text input-->
+                <div class="form-group">
+                    @Html.LabelFor(m => m.ObjRegisterModel.LastName, new { @class = "col-md-4 control-label" })
+                    <div class="col-md-7">
+                        @Html.TextBoxFor(m => m.ObjRegisterModel.LastName, new { placeholder = "Last Name", @class = "form-control input-md" })
+                        @Html.ValidationMessageFor(m => m.ObjRegisterModel.LastName)
+                    </div>
+                </div>
+
+                <!-- Text input-->
+                <div class="form-group">
+                    @Html.LabelFor(m => m.ObjRegisterModel.Email, new { @class = "col-md-4 control-label" })
+                    <div class="col-md-7">
+                        @Html.TextBoxFor(m => m.ObjRegisterModel.Email, new { placeholder = "Email", @class = "form-control input-md" })
+                        @Html.ValidationMessageFor(m => m.ObjRegisterModel.Email)
+                    </div>
+                </div>
+
+                <!-- Text input-->
+                <div class="form-group">
+                    @Html.LabelFor(m => m.ObjRegisterModel.MobileNumber, new { @class = "col-md-4 control-label" })
+                    <div class="col-md-7">
+                        @Html.TextBoxFor(m => m.ObjRegisterModel.MobileNumber, new { placeholder = "Mobile No.", @class = "form-control input-md", @onblur = "javascript:CheckMobileAlreadyExist(this);" })
+                        @Html.ValidationMessageFor(m => m.ObjRegisterModel.MobileNumber)
+                    </div>
+                </div>
+
+                <!-- Text input-->
+                <div class="form-group">
+                    @Html.LabelFor(m => m.ObjRegisterModel.Password, new { @class = "col-md-4 control-label" })
+                    <div class="col-md-7">
+                        @Html.PasswordFor(m => m.ObjRegisterModel.Password, new { placeholder = "Password", @class = "form-control input-md" })
+                        @Html.ValidationMessageFor(m => m.ObjRegisterModel.Password)
+                    </div>
+                </div>
+
+                <!-- Text input-->
+                <div class="form-group">
+                    @Html.LabelFor(m => m.ObjRegisterModel.ConfirmPassword, new { @class = "col-md-4 control-label" })
+                    <div class="col-md-7">
+                        @Html.PasswordFor(m => m.ObjRegisterModel.ConfirmPassword, new { placeholder = "confirm pass", @class = "form-control input-md" })
+                        @Html.ValidationMessageFor(m => m.ObjRegisterModel.ConfirmPassword)
+                    </div>
+                </div>
+
+                <!-- Button -->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="singlebutton"></label>
+                    <div class="col-md-7">
+                        <input type="submit" name="singlebutton" class="btn btn-primary" value="Sign up" />
+                        @if (ViewBag.ShowOtp != null && (bool)ViewBag.ShowOtp)
+                        {
+                            @Html.ActionLink("Get OTP", "GetOtp", "Account", null, new { @class = "btn btn-primary" })
+                        }
+                    </div>
+                </div>
+
+            </fieldset>
+        }
+    </div>
+    <div class="col-md-3">
+        <fieldset>
+            <!-- Form Name -->
+            <legend>Sign up or Log in</legend>
+            <section class="social" id="socialLoginForm">
+                <h2></h2>
+                @Html.Action("ExternalLoginsList", new { ReturnUrl = ViewBag.ReturnUrl })
+            </section>
+        </fieldset>
+    </div>
+    <div class="col-md-12" style="background-color: #fff;">
+        <p style="font-weight:bold; color:orangered;">@ViewBag.Message</p>
+    </div>
+</div>
+
+
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+

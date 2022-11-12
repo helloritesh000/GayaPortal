@@ -1,0 +1,15 @@
+﻿@using Dekhlo.Web.Models;
+
+@{
+    PORTALEntitiy db = new PORTALEntitiy();
+    Logo logo = db.Logoes.FirstOrDefault();
+
+    if (logo != null && logo.ImageContent != null && logo.ImageContent.Length > 0)
+    {
+        var base64 = Convert.ToBase64String(logo.ImageContent);
+        var imgSrc = String.Format("data:image/gif;base64,{0}", base64);
+    <a href="@Url.Action("Index", "Home")">
+        <img src="@imgSrc" class="img img-responsive" style="margin-top:20px;"/>
+    </a>
+    }   
+}

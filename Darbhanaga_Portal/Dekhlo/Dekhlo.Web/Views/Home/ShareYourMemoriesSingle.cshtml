@@ -1,0 +1,154 @@
+﻿@model Dekhlo.Web.Models.ModelProperty
+@{
+    ViewBag.Title = "ShareYourMemoriesSingle";
+    Layout = "~/Views/Shared/LayoutResponsive.cshtml";
+}
+
+<div class="divParentPostYourAdd">
+    <div class="divParentPostYourAdd">
+        <div class="row">
+            <div class="col-md-4">
+
+                @using (Html.BeginForm("ShareYourMemoryEdit", "Home", FormMethod.Post, new { @class = "form-horizontal", enctype = "multipart/form-data" }))
+                {
+                    
+                    @Html.HiddenFor(model => model.ObjMemory.Id)
+                    @Html.HiddenFor(model => model.ObjUserRegistration.Id)
+
+                    <fieldset>
+
+                        <!-- Form Name -->
+                        <legend>Share Your Memories</legend>
+
+                        <!-- Text input-->
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.ObjUserRegistration.FirstName, new { @class = "col-md-4 control-label" })
+                            <div class="col-md-8">
+                                @Html.TextBoxFor(model => model.ObjUserRegistration.FirstName, new { placeholder = "First Name", @class = "form-control input-md" })
+                                @Html.ValidationMessageFor(model => model.ObjUserRegistration.FirstName)
+                            </div>
+                        </div>
+
+                        <!-- Text input-->
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.ObjUserRegistration.LastName, new { @class = "col-md-4 control-label" })
+                            <div class="col-md-8">
+                                @Html.TextBoxFor(model => model.ObjUserRegistration.LastName, new { placeholder = "Last Name", @class = "form-control input-md" })
+                                @Html.ValidationMessageFor(model => model.ObjUserRegistration.LastName)
+
+                            </div>
+                        </div>
+
+                        <!-- Text input-->
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.ObjUserRegistration.MobileNo, new { @class = "col-md-4 control-label" })
+                            <div class="col-md-8">
+                                @Html.TextBoxFor(model => model.ObjUserRegistration.MobileNo, new { placeholder = "Mobile No", @class = "form-control input-md" })
+                                @Html.ValidationMessageFor(model => model.ObjUserRegistration.MobileNo)
+
+                            </div>
+                        </div>
+
+                        <!-- Text input-->
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.ObjUserRegistration.EmailId, new { @class = "col-md-4 control-label" })
+                            <div class="col-md-8">
+                                @Html.TextBoxFor(model => model.ObjUserRegistration.EmailId, new { placeholder = "Email Id", @class = "form-control input-md" })
+                                @Html.ValidationMessageFor(model => model.ObjUserRegistration.EmailId)
+
+                            </div>
+                        </div>
+
+                        <!-- Text input -->
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.ObjMemory.Title, new { @class = "col-md-4 control-label" })
+                            <div class="col-md-8">
+                                @Html.TextBoxFor(model => model.ObjMemory.Title, new { placeholder = "Title", @class = "form-control input-md" })
+                                @Html.ValidationMessageFor(model => model.ObjMemory.Title)
+
+                            </div>
+                        </div>
+
+                        <!-- Textarea -->
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.ObjMemory.Description, new { @class = "col-md-4 control-label" })
+                            <div class="col-md-8">
+                                @Html.TextAreaFor(model => model.ObjMemory.Description, new { placeholder = "Description", @class = "form-control", rows = 8 })
+                                @Html.ValidationMessageFor(model => model.ObjMemory.Description)
+
+                            </div>
+                        </div>
+
+                        <!-- File Button -->
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="filebutton">Upload Photos</label>
+                            <div class="col-md-8 divMainShareYourMemory">
+                                <input id="fldUploadPhotos1" name="filebutton1" class="input-file" type="file" style="display: none;" onchange="javascript: InputFileChange(this, 'divAddPostImage1');" />
+                                <input id="fldUploadPhotos2" name="filebutton2" class="input-file" type="file" style="display: none;" onchange="javascript: InputFileChange(this, 'divAddPostImage2');" />
+                                <input id="fldUploadPhotos3" name="filebutton3" class="input-file" type="file" style="display: none;" onchange="javascript: InputFileChange(this, 'divAddPostImage3');" />
+                                <div class="row">
+                                    <div class="col-md-3 divAddPostImage" id="divAddPostImage1" onmouseover="javascript: ShowPlusAndCross(this);" onmouseout="javascript: HideCross(this);">
+                                        <input type="hidden" id="hdnUploadPhotos1" name="hdnUploadPhotos1" value="0" />
+                                        <img src="" class="img img-responsive" id="imgUploadPhotos1" />
+                                        <span class="glyphicon glyphicon-plus spanPlus" onclick="javascript: document.getElementById('fldUploadPhotos1').click();"></span>
+                                        <span class="glyphicon glyphicon-remove spanRemove" onclick="javascript: RemoveBrowsedAttachment('divAddPostImage1', 'fldUploadPhotos1', 'filebutton1');"></span>
+                                    </div>
+                                    <div class="col-md-3 divAddPostImage" id="divAddPostImage2" onmouseover="javascript: ShowPlusAndCross(this);" onmouseout="javascript: HideCross(this);">
+                                        <input type="hidden" id="hdnUploadPhotos2" name="hdnUploadPhotos2" value="0" />
+                                        <img src="" class="img img-responsive" id="imgUploadPhotos2" />
+                                        <span class="glyphicon glyphicon-plus spanPlus" onclick="javascript: document.getElementById('fldUploadPhotos2').click();"></span>
+                                        <span class="glyphicon glyphicon-remove spanRemove" onclick="javascript: RemoveBrowsedAttachment('divAddPostImage2', 'fldUploadPhotos2', 'filebutton2');"></span>
+                                    </div>
+                                    <div class="col-md-3 divAddPostImage" id="divAddPostImage3" onmouseover="javascript: ShowPlusAndCross(this);" onmouseout="javascript: HideCross(this);">
+                                        <input type="hidden" id="hdnUploadPhotos3" name="hdnUploadPhotos3" value="0" />
+                                        <img src="" class="img img-responsive" id="imgUploadPhotos3" />
+                                        <span class="glyphicon glyphicon-plus spanPlus" onclick="javascript: document.getElementById('fldUploadPhotos3').click();"></span>
+                                        <span class="glyphicon glyphicon-remove spanRemove" onclick="javascript: RemoveBrowsedAttachment('divAddPostImage3', 'fldUploadPhotos3', 'filebutton3');"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Button -->
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="singlebutton"></label>
+                            <div class="col-md-8">
+                                <input type="submit" class="btn btn-primary" value="Share" />
+                            </div>
+                        </div>
+                    </fieldset>
+                }
+            </div>
+            <div class="col-md-8">
+                <div class="row">
+                    <div class="table-responsive" id="divNeedsAdded">
+                        @Html.Partial("~/Views/Home/_ShareYourMemoriesSingle.cshtml")
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <div id="fb-root"></div>
+    <script>
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.6";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));</script>
+
+
+    <div id="fb-root"></div>
+    <script>
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.6&appId=758786684223438";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));</script>
+}

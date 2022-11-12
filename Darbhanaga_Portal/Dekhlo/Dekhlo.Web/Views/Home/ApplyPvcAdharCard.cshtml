@@ -1,0 +1,132 @@
+﻿@model Dekhlo.Web.Models.ModelProperty
+
+@{
+    ViewBag.Title = "ApplyPvcAdharCard";
+    Layout = "~/Views/Shared/LayoutResponsive.cshtml";
+}
+
+<div class="divParentPostYourAdd">
+    <div class="row">
+        <div class="col-md-3">
+            <div class="row">
+                @using (Ajax.BeginForm("ApplyPvcAdharCard", "Home", null,
+                    new AjaxOptions
+                    {
+                        HttpMethod = "Post",
+                        UpdateTargetId = "divPvcAdded", 
+                        OnSuccess = "Success()", OnFailure = "Failure()", 
+                        InsertionMode = InsertionMode.Replace   , LoadingElementId = "loader" },
+                    new { @class = "form-horizontal", enctype = "multipart/form-data", id="frmForm", name="frmForm" }))
+                {
+                    @Html.ValidationSummary(true)
+
+                    <fieldset>
+
+                        <!-- Form Name -->
+                        <legend>Upload E-Aadhaar PDF(s) Here</legend>
+
+                        <!-- Button -->
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="singlebutton"></label>
+                            <div class="col-md-8">
+                                <button id="singlebutton" name="singlebutton" class="btn btn-default">PriceList</button>
+                            </div>
+                        </div>
+
+                        <!-- File Button -->
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="filebutton"></label>
+                            <div class="col-md-8">
+                                <input id="fileUploadPvcDoc" name="fileUploadPvcDoc" class="input-file" type="file" style="display: none;">
+                                <input id="btnUploadPvcDoc" class="input-file btn btn-primary" type="button" value="Upload File" onclick="javascript: document.getElementById('fileUploadPvcDoc').click();">
+                            </div>
+                        </div>
+
+                       @* <!-- Text input-->
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.ObjUserRegistration.FirstName, new { @class = "col-md-4 control-label" })
+                            <div class="col-md-8">
+                                @Html.TextBoxFor(model => model.ObjUserRegistration.FirstName, new { @class = "form-control input-md", placeholder = "First Name" })
+                                @Html.ValidationMessageFor(model => model.ObjUserRegistration.FirstName)
+                            </div>
+                        </div>
+
+                        <!-- Text input-->
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.ObjUserRegistration.LastName, new { @class = "col-md-4 control-label" })
+                            <div class="col-md-8">
+                                @Html.TextBoxFor(model => model.ObjUserRegistration.LastName, new { @class = "form-control input-md", placeholder = "Last Name" })
+                                @Html.ValidationMessageFor(model => model.ObjUserRegistration.LastName)
+                            </div>
+                        </div>
+
+                        <!-- Text input-->
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.ObjUserRegistration.MobileNo, new { @class = "col-md-4 control-label" })
+                            <div class="col-md-8">
+                                @Html.TextBoxFor(model => model.ObjUserRegistration.MobileNo, new { @class = "form-control input-md", placeholder = "Mobile No." })
+                                @Html.ValidationMessageFor(model => model.ObjUserRegistration.MobileNo)
+                            </div>
+                        </div>*@
+
+                        <!-- Text input-->
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.ObjPvc.NumberofCopies, new { @class = "col-md-4 control-label" })
+                            <div class="col-md-8">
+                                @Html.TextBoxFor(model => model.ObjPvc.NumberofCopies, new { @class = "form-control input-md", placeholder = "copies." })
+                                @Html.ValidationMessageFor(model => model.ObjPvc.NumberofCopies)
+                            </div>
+                        </div>
+
+                        @*<!-- Text input-->
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.ObjUserRegistration.Address, new { @class = "col-md-4 control-label" })
+                            <div class="col-md-8">
+                                @Html.TextBoxFor(model => model.ObjUserRegistration.Address, new { @class = "form-control", placeholder = "Shipping Address" })
+                                @Html.ValidationMessageFor(model => model.ObjUserRegistration.Address)
+                            </div>
+                        </div>*@
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.ObjPvc.PinCode, new { @class = "col-md-4 control-label" })
+                            <div class="col-md-8">
+                                @Html.TextBoxFor(model => model.ObjPvc.PinCode, new { @class = "form-control input-md", placeholder = "Pin Code" })
+                                @Html.ValidationMessageFor(model => model.ObjPvc.PinCode)
+                            </div>
+                        </div>
+
+                        <!-- Prepended checkbox -->
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="prependedcheckbox"></label>
+                            <div class="col-md-8">
+                                <div class="input-group">
+                                    <span class="input-group-addon">
+                                        @Html.TextBoxFor(model => model.ObjPvc.IsTermAccepted, new { @type = "checkbox" , onclick="javascrupt:this.value=this.checked"})
+                                        @Html.ValidationMessageFor(model => model.ObjPvc.IsTermAccepted)
+                                    </span>
+                                    <input id="prependedcheckbox" name="prependedcheckbox" class="form-control" type="text" placeholder="I agree to the Terms &amp; Conditions" required="" readonly="readonly">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Button -->
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="singlebutton"></label>
+                            <div class="col-md-8">
+                                <input type="submit" value="Upload" class="btn btn-success" />
+                                <span id="loader"></span>
+                            </div>
+                        </div>
+                    </fieldset>
+                }
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div class="row">
+                <div class="table-responsive" id="divPvcAdded">
+                    @Html.Partial("~/Views/Home/_PvcForUser.cshtml")
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

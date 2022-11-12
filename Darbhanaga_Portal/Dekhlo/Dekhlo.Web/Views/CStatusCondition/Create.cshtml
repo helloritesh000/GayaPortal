@@ -1,0 +1,32 @@
+﻿@model Dekhlo.Web.Models.StatusCondition
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>StatusCondition</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.StatusName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.StatusName)
+            @Html.ValidationMessageFor(model => model.StatusName)
+        </div>
+
+        <p>
+            <input type="submit" class="btn btn-primary" value="Create" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+

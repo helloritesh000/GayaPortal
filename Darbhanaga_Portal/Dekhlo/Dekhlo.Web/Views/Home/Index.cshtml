@@ -1,0 +1,141 @@
+﻿@model IEnumerable<Dekhlo.Web.Models.Post>
+
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/LayoutResponsive.cshtml";
+}
+
+<div class="col-md-12 col-xs-12 col-sm-12">
+    <div class="row">
+        <div class="col-md-9 col-xs-9 col-sm-12">
+            <div class="row">
+                <div class="divColumns">
+                    @{
+                        if (Model != null && Model.Count() > 0)
+                        {
+                            foreach (var item in Model)
+                            {
+                        @Html.Partial("_Index", item)
+                            }
+                        }
+                        else
+                        {
+
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 col-xs-3 col-sm-12">
+            @*<div class="row">*@
+                @Html.Partial("~/Views/Home/_RightFreeListing.cshtml")
+            @*</div>*@
+        </div>
+    </div>
+</div>
+
+
+
+<div class="col-md-12 col-xs-12 col-sm-12">
+    <div class="row">
+        <div class="col-md-12 col-xs-12 col-sm-12">
+            <div class="row divShowMore">
+                <input type="button" class="btn btn-default btnShowMore" value="Show More" id="btnShowMore" />
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script src="@Url.Content("~/Scripts/jquery.mousewheel-3.1.12.js")" ></script>
+    <script src="@Url.Content("~/Scripts/jquery.jcarousellite.min.js")"></script>
+    <script type="text/javascript">
+
+
+        $(document).ready(function () {
+            function SetRandom() {
+                var timeoutID = window.setTimeout(GetRandomPost, 10000);
+            }
+
+
+            function GetRandomPost() {
+
+                if ($('.divColumns .divBlockMain').length > 0) {
+                    var idsPresent = Array();
+                    $.each($('.divColumns .divBlockMain'), function (index, divBlockMain) {
+                        idsPresent.push($(this).find("#item_Id").val());
+                    });
+
+                    $.ajax({
+                        url: '@Url.Action("GetRandomPost", "Home")',
+                        data: JSON.stringify({ 'idsPresent': idsPresent }),
+                        type: 'POST',
+                        dataType: 'html',
+                        contentType: 'application/json',
+                        success: function (data) {
+                            if (data != undefined && data != null) {
+                                var randomNumber = Math.floor(Math.random() * (($('.divColumns .divBlockMain').length - 1) - 1 + 1) + 1);
+                                $($('.divColumns .divBlockMain')[randomNumber]).fadeOut(2000, function () {
+                                    //var div = $("<div id='foo'>test2</div>").hide();
+                                    $(this).replaceWith(data);
+                                    //$('.divColumns .divBlockMain')[randomNumber].innerHTML = $.parseHTML(data)[1].innerHTML;
+                                    $($('.divColumns .divBlockMain')[randomNumber]).fadeIn(2000);
+                                });
+
+                                //$('.divColumns .divBlockMain')[randomNumber].innerHTML = $.parseHTML(data)[1].innerHTML;
+                            }
+                        },
+                        error: function (data) {
+                            //alert("Please reload the page");
+                        },
+                    });
+                }
+                SetRandom();
+            }
+            SetRandom();
+
+
+            $('.btnShowMore').click(function () {
+                if ($('.divColumns .divBlockMain').length > 0) {
+                    var idsPresent = Array();
+                    $.each($('.divColumns .divBlockMain'), function (index, divBlockMain) {
+                        idsPresent.push($(this).find("#item_Id").val());
+                    });
+
+                    for (var i = 0; i < 1; i++) {
+                        $.ajax({
+                            url: '@Url.Action("GetRandomPost", "Home")',
+                            data: JSON.stringify({ 'idsPresent': idsPresent }),
+                            type: 'POST',
+                            dataType: 'html',
+                            contentType: 'application/json',
+                            success: function (data) {
+                                if (data != undefined && data != null) {
+                                    $('.divColumns').append($.parseHTML(data)[1]);
+                                }
+                            },
+                            error: function (data) {
+                                alert("Please reload the page");
+                            },
+                        });
+                    }
+
+
+                }
+            });
+
+            $(".rightAddListing").jCarouselLite({
+                auto: 1000,
+                speed: 1200,
+                vertical: true,
+                circular: true,
+                mouseWheel: true,
+                visible: 15
+            });
+
+        });
+
+    </script>
+}
+

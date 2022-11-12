@@ -1,0 +1,158 @@
+﻿@model IEnumerable<Dekhlo.Web.Models.Post>
+
+@{
+    ViewBag.Title = "Cateogry Wise Post";
+    Layout = "~/Views/Shared/LayoutResponsive.cshtml";
+}
+
+<div class="col-md-12 divAddListingParent">
+    <div class="row">
+        <div class="col-md-3 col-sm-12 col-lg-3">
+            <div class="row">
+                <ul class="list-group">
+                    @Html.Partial("~/Views/Home/_Category.cshtml")
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-9 col-sm-12 col-lg-9">
+            
+                @if (Model != null && Model.Count() > 0)
+                {
+                    foreach (var item in Model)
+                    {
+                    <div class="col-md-12" style="margin-bottom: 20px;">
+                        <div class="row">
+                            <div class="col-md-3 divProdImgParent">
+                                <div class="row">
+                                    @if (item != null && item.PostImages != null && item.PostImages.Count > 0)
+                                    {
+                                        foreach (var img in item.PostImages)
+                                        {
+                                        <div id="bigpic" class="b">
+                                            <img src="@img.ImageUrl" alt="Image" class="img img-responsive" />
+                                            <p id="desc"></p>
+                                        </div>
+                                            break;
+                                        }
+                                    }
+
+                                    <div id="thumbs" class="thumbs">
+                                        <ul>
+                                            @if (item != null && item.PostImages != null && item.PostImages.Count > 0)
+                                            {
+                                                foreach (var img in item.PostImages)
+                                                {
+                                                <li>
+                                                    <a href="@img.ImageUrl" rel="@img.ImageUrl">
+                                                        <img src="@img.ImageUrl" alt="thumbnail" class="img img-responsive" />
+                                                    </a>
+                                                </li>
+                                                }
+                                            }
+                                            <div style="clear: both;"></div>
+                                        </ul>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-9">
+                                @if (Session["LoggedInUserId"] != null && Convert.ToInt64(Session["LoggedInUserId"]) == item.UserId)
+                                { 
+                                    <span class="pull-right">
+                                        <a href="@Url.Action("PostFreeEditListing", "Home", new { id = item.Id, title=item.PostTitle.ToSeoUrl() })">Edit</a>
+                                    </span>
+                                }
+                                <h2><a href="@Url.Action("SinglePost", "Home", new { id = item.Id, title=item.PostTitle.ToSeoUrl()})">@item.PostTitle</a></h2>
+                                <hr style="margin: 0px;" />
+                                <div>
+                                    <i class="pull-right">@String.Format("{0:D}", item.CreatedOn)</i>
+                                    <div style="clear: both;"></div>
+                                </div>
+
+                                <p>@item.PostContent</p>
+                                <div class="col-md-6">
+                                    <div class="row">
+                                        <div class="table-responsive">
+                                            <table class="table table-border">
+                                                <tr>
+                                                    <td>
+                                                        @Html.DisplayName("Name") : @Html.DisplayFor(model => item.UserRegistration.FirstName) @Html.DisplayFor(model => item.UserRegistration.LastName)
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        @Html.DisplayNameFor(model => model.UserRegistration.MobileNo) : @Html.DisplayFor(model => item.UserRegistration.MobileNo)
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="row">
+                                        <div class="table-responsive">
+                                            <table class="table table-border">
+                                                <tr>
+                                                    <td>
+                                                        @Html.DisplayNameFor(model => model.UserRegistration.Address) : @Html.DisplayFor(model => item.UserRegistration.Address)
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        @Html.DisplayNameFor(model => model.Status) : @Html.DisplayFor(model => item.StatusCondition.StatusName)
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <hr />
+                                    <p>
+                                        @foreach (var cat in item.PostCateogryMappings)
+                                        {
+                                            <i>@Html.ActionLink(cat.Cateogry.CateogryName, "CateogryWisePost", "Home", new { id = cat.CateogryId, title=cat.Cateogry.CateogryName.ToSeoUrl() }, null)</i>
+                                        }
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div style="clear: both;"></div>
+                    <hr />
+                    }
+                }
+            
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('.thumbs ul li a').hover(
+            function () {
+                var currentBigImage = $(this).parents('.divProdImgParent').find('#bigpic img').attr('src');
+                var newBigImage = $(this).attr('href');
+                var currentThumbSrc = $(this).attr('rel');
+                switchImage(newBigImage, currentBigImage, currentThumbSrc, $(this).parents('.divProdImgParent'));
+            },
+            function () { }
+        );
+
+        function switchImage(imageHref, currentBigImage, currentThumbSrc, divProdImgParent) {
+            var theBigImage = divProdImgParent.find('#bigpic img');
+            if (imageHref != currentBigImage) {
+                theBigImage.fadeOut(250, function () {
+                    theBigImage.attr('src', imageHref).fadeIn(350);
+
+                    var newImageDesc = divProdImgParent.find(".thumbs ul li a      img[src='" + currentThumbSrc + "']").attr('alt');
+                    //divProdImgParent.find('p#desc').empty().html(newImageDesc);
+                });
+            }
+        }
+    });
+    </script>
+}

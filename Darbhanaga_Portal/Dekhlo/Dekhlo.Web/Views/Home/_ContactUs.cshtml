@@ -1,0 +1,76 @@
+﻿@model Dekhlo.Web.Models.Enquiry
+
+@using (Html.BeginForm("EmailUs", "Home", FormMethod.Post, new { @class = "form-horizontal", enctype = "multipart/form-data" }))
+{
+    <fieldset>
+
+        <!-- Form Name -->
+        <legend>Contact Form</legend>
+        <p style="color:#057D05;">@ViewBag.Message</p>
+
+        <!-- Text input-->
+        <div class="form-group">
+            @Html.LabelFor(model => model.EmailTo, new { @class = "col-md-4 control-label" })
+            <div class="col-md-4">
+                @Html.TextBoxFor(model => model.EmailTo, new { @class = "form-control", @readonly = "readonly" })
+                @Html.ValidationMessageFor(model => model.EmailTo)
+            </div>
+        </div>
+
+        <!-- Text input-->
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.FromMobileNumber, new { @class = "col-md-4 control-label" })
+            <div class="col-md-4">
+                @Html.TextBoxFor(model => model.FromMobileNumber, new { @class = "form-control", placeholder = "Mobile no." })
+                @Html.ValidationMessageFor(model => model.FromMobileNumber)
+            </div>
+        </div>
+
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.EmailFrom, new { @class = "col-md-4 control-label" })
+            <div class="col-md-4">
+                @Html.TextBoxFor(model => model.EmailFrom, new { @class = "form-control", placeholder = "Your Email" })
+                @Html.ValidationMessageFor(model => model.EmailFrom)
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.EnquirySubject, new { @class = "col-md-4 control-label" })
+            <div class="col-md-4">
+                @Html.TextBoxFor(model => model.EnquirySubject, new { @class = "form-control", placeholder = "Subject" })
+                @Html.ValidationMessageFor(model => model.EnquirySubject)
+            </div>
+        </div>
+
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.EnquiryDescription, new { @class = "col-md-4 control-label" })
+            <div class="col-md-4">
+                @Html.TextBoxFor(model => model.EnquiryDescription, new { @class = "form-control", placeholder = "Your Query..." })
+                @Html.ValidationMessageFor(model => model.EnquiryDescription)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.EnquiryDocument, new { @class = "col-md-4 control-label" })
+            <div class="col-md-8">
+                <input id="fileUploadDocument" name="fileUploadDocument" class="input-file" type="file" style="display: none;">
+                <input id="btnUploadDocument" class="input-file btn btn-primary" type="button" value="Upload Attachment" onclick="javascript: document.getElementById('fileUploadDocument').click();">
+            </div>
+        </div>
+
+        <!-- Button -->
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="singlebutton"></label>
+            <div class="col-md-4">
+                <input type="submit" value="Send" class="btn btn-primary" />
+            </div>
+        </div>
+
+    </fieldset>
+}

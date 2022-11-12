@@ -1,0 +1,108 @@
+﻿@model Dekhlo.Web.Models.RegisterExternalLoginModel
+@{
+    ViewBag.Title = "Register";
+    Layout = "~/Views/Shared/LayoutResponsive.cshtml";
+}
+
+<div class="col-md-12">
+    <div class="col-md-5">
+        <div class="row">
+            <hgroup class="title">
+                <h1>@ViewBag.Title.</h1>
+                <h2>Associate your @ViewBag.ProviderDisplayName account.</h2>
+            </hgroup>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="row">
+            @using (Html.BeginForm("ExternalLoginConfirmation", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal" }))
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true)
+                @Html.HiddenFor(m => m.ExternalLoginData)
+                @Html.HiddenFor(m => m.FirstName)
+                @Html.HiddenFor(m => m.MiddleName)
+                @Html.HiddenFor(m => m.LastName)
+                <fieldset>
+                    <!-- Form Name -->
+                    <legend>Form Name</legend>
+
+                    <p>
+                        You've successfully authenticated with <strong>@ViewBag.ProviderDisplayName</strong>.
+                    Please enter a user name for this site below and click the Confirm button to finish
+                    logging in.
+                    </p>
+
+                    <!-- Text input-->
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.UserName, new { @class = "col-md-4 control-label" })
+                        <div class="col-md-4">
+                            @Html.TextBoxFor(m => m.UserName, new { placeholder = "Username", @class = "form-control input-md" })
+                            @Html.ValidationMessageFor(m => m.UserName)
+                        </div>
+                    </div>
+
+                    <!-- Text input-->
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Email, new { @class = "col-md-4 control-label" })
+                        <div class="col-md-4">
+                            @Html.TextBoxFor(m => m.Email, new { placeholder = "Email", @class = "form-control input-md" })
+                            @Html.ValidationMessageFor(m => m.Email)
+                        </div>
+                    </div>
+
+                    <!-- Text input-->
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.MobileNumber, new { @class = "col-md-4 control-label" })
+                        <div class="col-md-4">
+                            @Html.TextBoxFor(m => m.MobileNumber, new { placeholder = "Mobile No.", @class = "form-control input-md" })
+                            @Html.ValidationMessageFor(m => m.MobileNumber)
+                        </div>
+                    </div>
+
+                    @*<!-- Text input-->
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Password, new { @class = "col-md-4 control-label" })
+                    <div class="col-md-4">
+                        @Html.PasswordFor(m => m.Password, new { placeholder = "Password", @class = "form-control input-md" })
+                        @Html.ValidationMessageFor(m => m.Password)
+                    </div>
+                </div>
+
+                <!-- Text input-->
+                <div class="form-group">
+                    @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-4 control-label" })
+                    <div class="col-md-4">
+                        @Html.PasswordFor(m => m.ConfirmPassword, new { placeholder = "confirm pass", @class = "form-control input-md" })
+                        @Html.ValidationMessageFor(m => m.ConfirmPassword)
+                    </div>
+                </div>*@
+
+                    <!-- Text input-->
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.ProfilePicUrl, new { @class = "col-md-4 control-label" })
+                        <div class="col-md-4">
+                            <img src="@Model.ProfilePicUrl" name="imgProfilePic" id="imgProfilePic" />
+                            @Html.HiddenFor(model => model.ProfilePicUrl)
+                            @*<input id="fldImageContent" name="fldImageContent" type="file" style="display:none;" />
+                            <input id="btnImageContent" name="btnImageContent" type="button" onclick="fldImageContent.click();" value="Browse" class="btn btn-primary" />*@
+                        </div>
+                    </div>
+
+                    <!-- Button -->
+                    <div class="form-group">
+                        <label class="col-md-4 control-label" for="singlebutton"></label>
+                        <div class="col-md-4">
+                            <input type="submit" name="singlebutton" class="btn btn-primary" value="Register" />
+                        </div>
+                    </div>
+
+                </fieldset>
+            }
+        </div>
+    </div>
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+

@@ -1,0 +1,55 @@
+﻿@model IEnumerable<Dekhlo.Web.Models.Search>
+
+@{
+    ViewBag.Title = "SearchSuggestionResults";
+    Layout = "~/Views/Shared/LayoutResponsive.cshtml";
+}
+
+
+<div class="col-md-12 col-xs-12 col-sm-12">
+    <div class="row">
+        <div class="col-md-9 col-xs-9 col-sm-12">
+            <div class="row">
+                <div>
+                    @if (Model != null && Model.Count() > 0)
+                    {
+                        foreach (var item in Model)
+                        {
+                            string actionLink = "#";
+                            if (!String.IsNullOrEmpty(item.SearchType))
+                            {
+                                if (item.SearchType == "Memory")
+                                {
+                                    actionLink = Url.Action("ShareYourMemoriesSingle", "Home", new { id = item.ContentId, title = item.Title.ToSeoUrl() });
+                                }
+                                else if (item.SearchType == "Post")
+                                {
+                                    actionLink = Url.Action("SinglePost", "Home", new { postid = item.ContentId, title = item.Title.ToSeoUrl() });
+                                }
+                                else if (item.SearchType == "SearchYourNeed")
+                                {
+                                    actionLink = Url.Action("SearchYourNeeds", "Home");
+                                }
+                            }
+                            <div>
+                                <p><a href="@actionLink"><strong>@item.Title</strong></a></p>
+                                <p>@item.SearchContent</p>
+                                <hr />
+                            </div>
+                        }
+                    }
+                    else
+                    {
+                        <p>no result found...</p>
+                    }
+
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 col-xs-3 col-sm-12">
+            @*<div class="row">*@
+            @Html.Partial("~/Views/Home/_RightFreeListing.cshtml")
+            @*</div>*@
+        </div>
+    </div>
+</div>
